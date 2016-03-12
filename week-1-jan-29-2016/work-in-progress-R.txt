@@ -1,0 +1,1994 @@
+R version 3.2.3 (2015-12-10) -- "Wooden Christmas-Tree"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin13.4.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> load("work/big-data-analytics-harvard/week1-Jan-29-2016/assignment/R-session.RData")
+> quantile(c(1,2,3,4)
++ )
+  0%  25%  50%  75% 100% 
+1.00 1.75 2.50 3.25 4.00 
+> quantile(c(0,1,2,3,4))
+  0%  25%  50%  75% 100% 
+   0    1    2    3    4 
+> boxplot(c(0,1,2,3,4))
+> quantile(c(0,5,6,7,8))
+  0%  25%  50%  75% 100% 
+   0    5    6    7    8 
+> quantile(c(0,6,7,8,9))
+  0%  25%  50%  75% 100% 
+   0    6    7    8    9 
+> quantile(c(0,1,7,8,9))
+  0%  25%  50%  75% 100% 
+   0    1    7    8    9 
+> boxplot(c(0,1,7,8,9))
+> median(c(0,1,2,3,4))
+[1] 2
+> boxplot(c(0,1,2,3,4))
+> median(c(0,1,7,8,9))
+[1] 7
+> boxplot(c(0,1,7,8,9))
+> boxplot(c(0,1,7,8,9), horizontal=T)
+> boxplot(c(11,1,6,13,2,7,15,3,8), c(2,3,4,2,3,4,2,3,4))
+> boxplot(c(11,1,6,13,2,7,15,3,8), c(2,13,24,2,13,24,2,13,24))
+> boxplot(c(0,1,7,8,9))
+> boxplot(c(0,1,7,8,9), c(1,2,3,4,5))
+> boxplot(c(0,1,7,8,9) ~ c(1,2,3,4,5))
+> boxplot(c(11,1,6,13,2,7,15,3,8) ~ c(2,3,4,2,3,4,2,3,4))
+> View(power.consumption.data)
+> head(power.consumption.data)
+  Month Day Hour DayOfWeek Holiday   Power Temperature  X
+1     1   1    1         7       0 54.5448     19.0000 NA
+2     1   1    2         7       0 52.3898     18.8500 NA
+3     1   1    3         7       0 51.6344     17.8650 NA
+4     1   1    4         7       0 51.5597     17.2800 NA
+5     1   1    5         7       0 51.7148     15.9182 NA
+6     1   1    6         7       0 52.6898     16.2400 NA
+> boxplot(power.consumption.data$Power ~ power.consumption.data~Hour)
+Error in eval(expr, envir, enclos) : object 'Hour' not found
+> boxplot(Power ~ Hour, data=power.consumption.data)
+> boxplot(Power ~ Hour, data=power.consumption.data, xlab="Hour of the day", ylab="Power Consumption")
+> help(avg)
+No documentation for ‘avg’ in specified packages and libraries:
+you could try ‘??avg’
+> test <- c(2,4,8,12,13,17,19,21)
+> range(test)
+[1]  2 21
+> breaks = seq(0, 25, by=5)
+> breaks
+[1]  0  5 10 15 20 25
+> test.cut = cut(test, breaks, right=FALSE)
+> test.cut
+[1] [0,5)   [0,5)   [5,10)  [10,15) [10,15) [15,20) [15,20) [20,25)
+Levels: [0,5) [5,10) [10,15) [15,20) [20,25)
+> table(test.cut)
+test.cut
+  [0,5)  [5,10) [10,15) [15,20) [20,25) 
+      2       1       2       2       1 
+> min(test.cut)
+Error in Summary.factor(c(1L, 1L, 2L, 3L, 3L, 4L, 4L, 5L), na.rm = FALSE) : 
+  ‘min’ not meaningful for factors
+> min(c(1,2,3))
+[1] 1
+> class(test.cut)
+[1] "factor"
+> intra.day.cost <- data.frame(cost=c(1,2,5,7,8,11,12,16), test=test)
+> intra.day.cost
+  cost test
+1    1    2
+2    2    4
+3    5    8
+4    7   12
+5    8   13
+6   11   17
+7   12   19
+8   16   21
+> tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks,right=FALSE), mean)
+  [0,5)  [5,10) [10,15) [15,20) [20,25) 
+    1.5     5.0     7.5    11.5    16.0 
+> tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks,right=FALSE), min)
+  [0,5)  [5,10) [10,15) [15,20) [20,25) 
+      1       5       7      11      16 
+> tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks,right=FALSE), max)
+  [0,5)  [5,10) [10,15) [15,20) [20,25) 
+      2       5       8      12      16 
+> range(power.consumption.data$Temperature)
+[1]  1.475 93.000
+> range(power.consumption.data$Power)
+[1]  35.2605 100.9896
+> breaks = seq(0, 100, by=2)
+> length(breaks)
+[1] 51
+> breaks
+ [1]   0   2   4   6   8  10  12  14  16  18  20  22  24  26  28  30  32  34  36
+[20]  38  40  42  44  46  48  50  52  54  56  58  60  62  64  66  68  70  72  74
+[39]  76  78  80  82  84  86  88  90  92  94  96  98 100
+> length(seq(0, 100, by=2))
+[1] 51
+> length(seq(1, 100, by=2))
+[1] 50
+> breaks = seq(1, 100, by=2)
+> breaks
+ [1]  1  3  5  7  9 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 41 43 45 47 49
+[26] 51 53 55 57 59 61 63 65 67 69 71 73 75 77 79 81 83 85 87 89 91 93 95 97 99
+> length(seq(0, 99, by=2))
+[1] 50
+> breaks = seq(0, 99, by=2)
+> breaks
+ [1]  0  2  4  6  8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40 42 44 46 48
+[26] 50 52 54 56 58 60 62 64 66 68 70 72 74 76 78 80 82 84 86 88 90 92 94 96 98
+> length(breaks)
+[1] 50
+> tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature, breaks, right=FALSE), mean)
+   [0,2)    [2,4)    [4,6)    [6,8)   [8,10)  [10,12)  [12,14)  [14,16)  [16,18) 
+68.80810 67.59424 63.09021 66.48662 69.62228 68.63619 69.76366 69.15527 69.53993 
+ [18,20)  [20,22)  [22,24)  [24,26)  [26,28)  [28,30)  [30,32)  [32,34)  [34,36) 
+67.92169 70.16936 72.22699 69.99356 70.86809 70.39441 69.34062 70.78043 68.56519 
+ [36,38)  [38,40)  [40,42)  [42,44)  [44,46)  [46,48)  [48,50)  [50,52)  [52,54) 
+69.17780 69.64676 69.14286 67.05606 66.12145 68.14068 66.21368 66.30797 65.02477 
+ [54,56)  [56,58)  [58,60)  [60,62)  [62,64)  [64,66)  [66,68)  [68,70)  [70,72) 
+63.35977 64.55695 62.46747 61.67348 65.13010 63.49158 63.66757 67.37782 70.24780 
+ [72,74)  [74,76)  [76,78)  [78,80)  [80,82)  [82,84)  [84,86)  [86,88)  [88,90) 
+70.86237 73.31438 74.24855 76.49859 75.72409 72.56602 77.33655 75.89586 77.27179 
+ [90,92)  [92,94)  [94,96)  [96,98) 
+79.46319 86.39373       NA       NA 
+> tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature, breaks, right=FALSE), min)
+  [0,2)   [2,4)   [4,6)   [6,8)  [8,10) [10,12) [12,14) [14,16) [16,18) [18,20) 
+68.8081 58.1601 54.9205 55.9044 60.4221 57.2195 50.2237 50.9279 49.8641 48.7796 
+[20,22) [22,24) [24,26) [26,28) [28,30) [30,32) [32,34) [34,36) [36,38) [38,40) 
+46.3978 46.3474 47.6825 49.6092 45.9109 45.6151 45.3238 44.4238 46.4085 39.5643 
+[40,42) [42,44) [44,46) [46,48) [48,50) [50,52) [52,54) [54,56) [56,58) [58,60) 
+40.0671 44.2881 41.2311 40.1007 40.8964 40.9541 35.2605 39.0662 39.3408 39.3739 
+[60,62) [62,64) [64,66) [66,68) [68,70) [70,72) [72,74) [74,76) [76,78) [78,80) 
+38.8142 41.2297 41.4718 40.8431 42.7762 39.9362 48.8566 41.0651 42.7008 54.4724 
+[80,82) [82,84) [84,86) [86,88) [88,90) [90,92) [92,94) [94,96) [96,98) 
+56.8079 55.4768 56.9069 51.6770 49.7290 49.6333 84.2437      NA      NA 
+> tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature, breaks, right=FALSE), max)
+   [0,2)    [2,4)    [4,6)    [6,8)   [8,10)  [10,12)  [12,14)  [14,16)  [16,18) 
+ 68.8081  87.6270  76.7704  89.7771  90.2336  91.6283  89.7539  90.9417  92.8717 
+ [18,20)  [20,22)  [22,24)  [24,26)  [26,28)  [28,30)  [30,32)  [32,34)  [34,36) 
+ 92.9389  91.5642  92.9723  95.8191  98.8383  96.7866  95.0473  96.6031 100.8437 
+ [36,38)  [38,40)  [40,42)  [42,44)  [44,46)  [46,48)  [48,50)  [50,52)  [52,54) 
+100.9896  90.8336 100.3930  95.7247  98.9550  96.8664  93.0825  91.7737  91.9065 
+ [54,56)  [56,58)  [58,60)  [60,62)  [62,64)  [64,66)  [66,68)  [68,70)  [70,72) 
+ 86.5059  87.1483  87.9378  91.3635  87.1151  85.5433  90.0549  88.1541  87.3791 
+ [72,74)  [74,76)  [76,78)  [78,80)  [80,82)  [82,84)  [84,86)  [86,88)  [88,90) 
+ 85.8301  88.4328  87.2949  89.0667  91.5709  89.9356  88.1065  89.5421  92.9252 
+ [90,92)  [92,94)  [94,96)  [96,98) 
+ 90.2133  88.1772       NA       NA 
+> class(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature, breaks, right=FALSE), max))
+[1] "array"
+> str(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature, breaks, right=FALSE), max))
+ num [1:49(1d)] 68.8 87.6 76.8 89.8 90.2 ...
+ - attr(*, "dimnames")=List of 1
+  ..$ : chr [1:49] "[0,2)" "[2,4)" "[4,6)" "[6,8)" ...
+> breaks.test = seq(0, 25, by=5)
+> tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)
+  [0,5)  [5,10) [10,15) [15,20) [20,25) 
+    1.5     5.0     7.5    11.5    16.0 
+> str(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+ num [1:5(1d)] 1.5 5 7.5 11.5 16
+ - attr(*, "dimnames")=List of 1
+  ..$ : chr [1:5] "[0,5)" "[5,10)" "[10,15)" "[15,20)" ...
+> tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)$num
+Error in tapply(intra.day.cost$cost, cut(intra.day.cost$test, breaks.test,  : 
+  $ operator is invalid for atomic vectors
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+> intra.day.cost <- data.frame(cost=c(11,12,15,7,8,11,12,16), test=test)
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+> intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)
+Error: unexpected ',' in "intra.day.cost$cost,"
+> tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)
+  [0,5)  [5,10) [10,15) [15,20) [20,25) 
+   11.5    15.0     7.5    11.5    16.0 
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean), breaks.test)
+Error in xy.coords(x, y, xlabel, ylabel, log) : 
+  'x' and 'y' lengths differ
+> length(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+[1] 5
+> length(breaks.test)
+[1] 6
+> test <- c(2,3,6,9,11,12,14,17)
+> intra.day.cost <- data.frame(cost=c(11,12,15,7,8,11,12,16), test=test)
+> breaks.test <- breaks(0,25,by=5)
+Error: could not find function "breaks"
+> breaks.test <- seq(0,25,by=5)
+> length(breaks.test)
+[1] 6
+> breaks.test <- seq(1,25,by=5)
+> length(breaks.test)
+[1] 5
+> tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)
+   [1,6)   [6,11)  [11,16)  [16,21) 
+11.50000 11.00000 10.33333 16.00000 
+> breaks.test
+[1]  1  6 11 16 21
+> seq(0,25,by=5)
+[1]  0  5 10 15 20 25
+> breaks.test <- seq(0,25,by=5)
+> tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)
+   [0,5)   [5,10)  [10,15)  [15,20)  [20,25) 
+11.50000 11.00000 10.33333 16.00000       NA 
+> intra.day.cost
+  cost test
+1   11    2
+2   12    3
+3   15    6
+4    7    9
+5    8   11
+6   11   12
+7   12   14
+8   16   17
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean), breaks.test)
+Error in xy.coords(x, y, xlabel, ylabel, log) : 
+  'x' and 'y' lengths differ
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean), tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min))
+> help(points)
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean), tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min))
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+> points(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min))
+> help(ggplot)
+No documentation for ‘ggplot’ in specified packages and libraries:
+you could try ‘??ggplot’
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean) + tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min))
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min))
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean) + tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min))
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min))
+> plot(c(1,5,3,7))
+> plot(c(6,2,7,1))
+> plot(c(6,2,7,1)+c(6,2,7,1))
+> test.data.frame <- data.frame(c1=c(6,2,7,1), c2=c(6,2,7,1))
+> plot(test.data.frame$c1 + test.data.frame$c2)
+> plot(test.data.frame)
+> plot(~ test.data.frame$c1 + test.data.frame$c2)
+> plot(test.data.frame ~ c1 + c2)
+Error in eval(expr, envir, enclos) : object 'c1' not found
+> help(xyplot)
+No documentation for ‘xyplot’ in specified packages and libraries:
+you could try ‘??xyplot’
+> library(lattice)
+> help(xyplot)
+> plot(test.data.frame)
+> help(xyplot)
+> help("plot.ts")
+> plot(test.data.frame[,c[1,2]])
+Error in pairs.default(data.matrix(x), ...) : 
+  only one column in the argument to 'pairs'
+> plot(test.data.frame[c[1,2]])
+Error in pairs.default(data.matrix(x), ...) : 
+  only one column in the argument to 'pairs'
+> plot(test.data.frame[,c(1,2)])
+> test.data.frame <- data.frame(c1=c(6,2,7,1), c2=c(1,6,2,7))
+> plot(test.data.frame ~ c1 + c2)
+Error in eval(expr, envir, enclos) : object 'c1' not found
+> plot(test.data.frame$c1 + test.data.frame$c2)
+> plot(~ test.data.frame$c1 + test.data.frame$c2)
+> test.data.frame <- data.frame(c1=c(6,2,7,1), c2=c(3,8,4,9))
+> plot(~ test.data.frame$c1 + test.data.frame$c2)
+> plot(test.data.frame[,c(1,2)])
+> plot(test.data.frame[c(1,2)])
+> plot(test.data.frame[c(1,2)])
+> plot(test.data.frame[,c(1,2)])
+> plot(~ test.data.frame$c1 + test.data.frame$c2)
+> plot(~ test.data.frame$c2 + test.data.frame$c1)
+> help(plot)
+> points(test.data.frame$c1)
+> points(test.data.frame$c1)
+Error in plot.xy(xy.coords(x, y), type = type, ...) : 
+  plot.new has not been called yet
+> plot.new()
+> points(test.data.frame$c1)
+> plot(-4:4, -4:4, type = "n")
+> plot(1:10, 1:10, type = "n")
+> points(test.data.frame$c1)
+> points(test.data.frame$c2)
+> points(test.data.frame$c1, , col = "red")
+> points(test.data.frame$c1, col = "red")
+> points(test.data.frame$c2, col="blue")
+> points(test.data.frame$c2, col="blue", cex=1.5)
+> points(test.data.frame$c2, col="blue", cex=0.3)
+> points(test.data.frame$c2, col="blue", cex=0.3)
+Error in plot.xy(xy.coords(x, y), type = type, ...) : 
+  plot.new has not been called yet
+> plot(1:10, 1:10, type = "n")
+> points(test.data.frame$c2, col="blue", cex=0.3)
+> breaks.test
+[1]  0  5 10 15 20 25
+> plot(breaks.test,1:20, type="n")
+Error in xy.coords(x, y, xlabel, ylabel, log) : 
+  'x' and 'y' lengths differ
+> plot(1:10, 1:5, type = "n")
+Error in xy.coords(x, y, xlabel, ylabel, log) : 
+  'x' and 'y' lengths differ
+> plot.new()
+> points(test.data.frame$c2, col="blue", cex=0.3)
+> plot(1, type="n", xlab="", ylab="", xlim=c(0, 10), ylim=c(0, 10))
+> plot(1, type="n", xlab="", ylab="", xlim=c(0, 11), ylim=c(0, 10))
+> plot(1, type="n", xlab="", ylab="", xlim=c(0, 100), ylim=c(0, 10))
+> plot(1, type="n", xlab="", ylab="", xlim=breaks.test, ylim=c(0, 10))
+Error in plot.window(...) : invalid 'xlim' value
+> class(c(0,10))
+[1] "numeric"
+> class(breaks.test)
+[1] "numeric"
+> breaks.test
+[1]  0  5 10 15 20 25
+> class(range(c(0,1)))
+[1] "numeric"
+> plot(1, type="n", xlab="", ylab="", xlim=seq(0,25,by=5), ylim=c(0, 10))
+Error in plot.window(...) : invalid 'xlim' value
+> seq(0,25,by=5)
+[1]  0  5 10 15 20 25
+> plot(1, type="n", xlab="", ylab="", breaks=5, xlim=c(0, 25), ylim=c(0, 10))
+Warning messages:
+1: In plot.window(...) : "breaks" is not a graphical parameter
+2: In plot.xy(xy, type, ...) : "breaks" is not a graphical parameter
+3: In axis(side = side, at = at, labels = labels, ...) :
+  "breaks" is not a graphical parameter
+4: In axis(side = side, at = at, labels = labels, ...) :
+  "breaks" is not a graphical parameter
+5: In box(...) : "breaks" is not a graphical parameter
+6: In title(...) : "breaks" is not a graphical parameter
+> points(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+There were 12 warnings (use warnings() to see them)
+> tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)
+   [0,5)   [5,10)  [10,15)  [15,20)  [20,25) 
+11.50000 11.00000 10.33333 16.00000       NA 
+There were 12 warnings (use warnings() to see them)
+> warnings()
+Warning messages:
+1: "breaks" is not a graphical parameter
+2: "breaks" is not a graphical parameter
+3: "breaks" is not a graphical parameter
+4: "breaks" is not a graphical parameter
+5: "breaks" is not a graphical parameter
+6: "breaks" is not a graphical parameter
+7: "breaks" is not a graphical parameter
+8: "breaks" is not a graphical parameter
+9: "breaks" is not a graphical parameter
+10: "breaks" is not a graphical parameter
+11: "breaks" is not a graphical parameter
+12: "breaks" is not a graphical parameter
+> tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)
+   [0,5)   [5,10)  [10,15)  [15,20)  [20,25) 
+11.50000 11.00000 10.33333 16.00000       NA 
+> intra.day.cost$cost
+[1] 11 12 15  7  8 11 12 16
+There were 18 warnings (use warnings() to see them)
+> plot(1, type="n", xlab="", ylab="", breaks=5, xlim=c(0, 25), ylim=c(1, 20))
+Warning messages:
+1: In plot.window(...) : "breaks" is not a graphical parameter
+2: In plot.xy(xy, type, ...) : "breaks" is not a graphical parameter
+3: In axis(side = side, at = at, labels = labels, ...) :
+  "breaks" is not a graphical parameter
+4: In axis(side = side, at = at, labels = labels, ...) :
+  "breaks" is not a graphical parameter
+5: In box(...) : "breaks" is not a graphical parameter
+6: In title(...) : "breaks" is not a graphical parameter
+> warnings()
+Warning messages:
+1: In plot.window(...) : "breaks" is not a graphical parameter
+2: In plot.xy(xy, type, ...) : "breaks" is not a graphical parameter
+3: In axis(side = side, at = at, labels = labels, ...) :
+  "breaks" is not a graphical parameter
+4: In axis(side = side, at = at, labels = labels, ...) :
+  "breaks" is not a graphical parameter
+5: In box(...) : "breaks" is not a graphical parameter
+6: In title(...) : "breaks" is not a graphical parameter
+There were 12 warnings (use warnings() to see them)
+> warnings()
+Warning messages:
+1: "breaks" is not a graphical parameter
+2: "breaks" is not a graphical parameter
+3: "breaks" is not a graphical parameter
+4: "breaks" is not a graphical parameter
+5: "breaks" is not a graphical parameter
+6: "breaks" is not a graphical parameter
+7: "breaks" is not a graphical parameter
+8: "breaks" is not a graphical parameter
+9: "breaks" is not a graphical parameter
+10: "breaks" is not a graphical parameter
+11: "breaks" is not a graphical parameter
+12: "breaks" is not a graphical parameter
+> c(1,2)
+[1] 1 2
+> points(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+> tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)
+   [0,5)   [5,10)  [10,15)  [15,20)  [20,25) 
+11.50000 11.00000 10.33333 16.00000       NA 
+There were 12 warnings (use warnings() to see them)
+> warnings()
+Warning messages:
+1: "breaks" is not a graphical parameter
+2: "breaks" is not a graphical parameter
+3: "breaks" is not a graphical parameter
+4: "breaks" is not a graphical parameter
+5: "breaks" is not a graphical parameter
+6: "breaks" is not a graphical parameter
+7: "breaks" is not a graphical parameter
+8: "breaks" is not a graphical parameter
+9: "breaks" is not a graphical parameter
+10: "breaks" is not a graphical parameter
+11: "breaks" is not a graphical parameter
+12: "breaks" is not a graphical parameter
+> plot(c(1,2,3,4,5))
+> length(breaks.test)
+[1] 6
+> plot(c(1,2,3,4,5,6), breaks.test)
+> plot(breaks.test, c(1,2,3,4,5,6))
+> plot.new()
+> point(breaks.test, c(1,2,3,4,5,6))
+Error: could not find function "point"
+> points(breaks.test, c(1,2,3,4,5,6))
+> plot(1, type="n", xlab="", ylab="")
+> point(breaks.test, c(1,2,3,4,5,6))
+Error: could not find function "point"
+> points(breaks.test, c(1,2,3,4,5,6))
+> plot(1, type="n", xlab="", ylab="", xlim=c(0, 25), ylim=c(0, 7))
+> points(breaks.test, c(1,2,3,4,5,6))
+> points(breaks.test, tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)
++ plot(1, type="n", xlab="", ylab="", xlim=c(0, 25), ylim=c(0, 7))
+Error: unexpected symbol in:
+"points(breaks.test, tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)
+plot"
+> tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)
+   [0,5)   [5,10)  [10,15)  [15,20)  [20,25) 
+11.50000 11.00000 10.33333 16.00000       NA 
+> plot(1, type="n", xlab="", ylab="", xlim=c(0, 25), ylim=c(0, 20))
+> points(breaks.test, tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+Error in xy.coords(x, y) : 'x' and 'y' lengths differ
+> breaks.test
+[1]  0  5 10 15 20 25
+> plot(1, type="n", xlab="", ylab="", xlim=c(0, 25), ylim=c(0, 7))
+> points(breaks.test, c(1,2,3,4,5,6))
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+> tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)
+   [0,5)   [5,10)  [10,15)  [15,20)  [20,25) 
+11.50000 11.00000 10.33333 16.00000       NA 
+> str(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+ num [1:5(1d)] 11.5 11 10.3 16 NA
+ - attr(*, "dimnames")=List of 1
+  ..$ : chr [1:5] "[0,5)" "[5,10)" "[10,15)" "[15,20)" ...
+> tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)[attr()]
+Error in attr() : either 2 or 3 arguments are required
+> tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)[attr]
+Error in tapply(intra.day.cost$cost, cut(intra.day.cost$test, breaks.test,  : 
+  invalid subscript type 'builtin'
+> names(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)[attr()])
+Error in attr() : either 2 or 3 arguments are required
+> names(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+[1] "[0,5)"   "[5,10)"  "[10,15)" "[15,20)" "[20,25)"
+> length(names(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)))
+[1] 5
+> labels=names(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+> names
+function (x)  .Primitive("names")
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean), labels=names())
+Error in names() : 0 arguments passed to 'names' which requires 1
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean), labels=names
++ )
+Error in axis(side = side, at = at, labels = labels, ...) : 
+  cannot coerce type 'builtin' to vector of type 'character'
+In addition: Warning messages:
+1: In plot.window(...) : "labels" is not a graphical parameter
+2: In plot.xy(xy, type, ...) : "labels" is not a graphical parameter
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+Warning messages:
+1: "labels" is not a graphical parameter 
+2: "labels" is not a graphical parameter 
+3: "labels" is not a graphical parameter 
+4: "labels" is not a graphical parameter 
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean), labels=c("a","b","c","d","e"))
+Error in axis(side = side, at = at, labels = labels, ...) : 
+  'labels' is supplied and not 'at'
+In addition: Warning messages:
+1: In plot.window(...) : "labels" is not a graphical parameter
+2: In plot.xy(xy, type, ...) : "labels" is not a graphical parameter
+> warnings
+function (...) 
+{
+    if (!exists("last.warning", envir = baseenv())) 
+        return()
+    last.warning <- get("last.warning", envir = baseenv())
+    if (!(length(last.warning))) 
+        return()
+    structure(last.warning, dots = list(...), class = "warnings")
+}
+<bytecode: 0x10e5dd180>
+<environment: namespace:base>
+Warning messages:
+1: "labels" is not a graphical parameter 
+2: "labels" is not a graphical parameter 
+3: "labels" is not a graphical parameter 
+4: "labels" is not a graphical parameter 
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+> axis(1, at=1:length(xnames), labels=names)
+Error in axis(1, at = 1:length(xnames), labels = names) : 
+  object 'xnames' not found
+> axis(1, at=1:length(names), labels=names)
+Error in axis(1, at = 1:length(names), labels = names) : 
+  cannot coerce type 'builtin' to vector of type 'character'
+> names
+function (x)  .Primitive("names")
+> xnames <- names(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+> xnames
+[1] "[0,5)"   "[5,10)"  "[10,15)" "[15,20)" "[20,25)"
+> axis(1, at=1:length(xnames), labels=xnames)
+> plot.new()
+> axis(1, at=1:length(xnames), labels=xnames)
+> points(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+> plot(1, type="n", xlab="xlab", ylab="ylab")
+> axis(1, at=1:length(xnames), labels=xnames)
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean))
+> axis(1, at=1:length(xnames), labels=names)
+Error in axis(1, at = 1:length(xnames), labels = names) : 
+  cannot coerce type 'builtin' to vector of type 'character'
+> axis(1, at=1:length(xnames), labels=xnames)
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean), axes=FALSE)
+> axis(1, at=1:length(xnames), labels=xnames)
+> help(axis)
+> axis(3)
+> axis(2)
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean), axes=FALSE)
+> axis(1, at=1:length(xnames), labels=xnames)
+> axis(2)
+> points(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min))
+> points(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), max))
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean), axes=FALSE, col="blue", cex=0.3)
+> axis(1, at=1:length(xnames), labels=xnames);axis(2)
+> points(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min), col="red", cex=0.3)
+> points(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), max), col="green", cex=0.3)
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean), axes=FALSE, col="blue", cex=0.6)
+> axis(1, at=1:length(xnames), labels=xnames);axis(2)
+> points(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min), col="red", cex=0.6)
+> points(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), max), col="green", cex=0.6)
+> tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean)
+   [0,5)   [5,10)  [10,15)  [15,20)  [20,25) 
+11.50000 11.00000 10.33333 16.00000       NA 
+> tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min)
+  [0,5)  [5,10) [10,15) [15,20) [20,25) 
+     11       7       8      16      NA 
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean) ~ tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min), axes=FALSE, col="blue", cex=0.6)
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean) ~ tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min), col="blue", cex=0.6)
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean) + tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min), col="blue", cex=0.6)
+> plot(~ tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean) + tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min), col="blue", cex=0.6)
+> plot(intra.day.cost ~ c1+c2)
+Error in eval(expr, envir, enclos) : object 'c1' not found
+> plot(intra.day.cost ~ cost+test)
+Error in eval(expr, envir, enclos) : object 'cost' not found
+> intra.day.cost
+  cost test
+1   11    2
+2   12    3
+3   15    6
+4    7    9
+5    8   11
+6   11   12
+7   12   14
+8   16   17
+> plot(~ intra.day.cost$cost)
+> plot(~ intra.day.cost$test)
+> plot(~ intra.day.cost$test)
+> plot(~ intra.day.cost$cost + intra.day.cost$test)
+> help(data.frame)
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean), axes=FALSE, col="blue", cex=0.3)
+> axis(1, at=1:length(xnames), labels=xnames);axis(2, at=range(intra.day.cost$cost))
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean), axes=FALSE, col="blue", cex=0.3, xlab="test", ylab="cost")
+> axis(1, at=1:length(xnames), labels=xnames);axis(2, at=range(intra.day.cost$cost))
+> points(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min), col="red", cex=0.3)
+> axis(2, at=range(intra.day.cost$cost), labels=min(intra.day.cost$cost):max(intra.day.cost$cost))
+Error in axis(2, at = range(intra.day.cost$cost), labels = min(intra.day.cost$cost):max(intra.day.cost$cost)) : 
+  'at' and 'labels' lengths differ, 2 != 10
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean), axes=FALSE, col="blue", cex=0.3, xlab="test", ylab="cost")
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean), axes=FALSE, col="blue", cex=0.3)
+> axis(1, at=1:length(xnames), labels=xnames);axis(2)
+> points(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min), col="red", cex=0.3)
+> plot(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), mean), axes=FALSE, col="blue", cex=0.3, xlab="test", ylab="cost")
+> axis(1, at=1:length(xnames), labels=xnames);axis(2)
+> points(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), min), col="red", cex=0.3)
+> points(tapply(intra.day.cost$cost, cut(intra.day.cost$test,breaks.test,right=FALSE), max), col="green", cex=0.3)
+> breaks
+ [1]  0  2  4  6  8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40 42 44 46 48 50 52 54
+[29] 56 58 60 62 64 66 68 70 72 74 76 78 80 82 84 86 88 90 92 94 96 98
+> plot(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks,right=FALSE), mean), axes=FALSE, col="blue", cex=0.3, xlab="Temperature", ylab="Power")
+> axis(1, at=1:length(xnames), labels=xnames);axis(2)
+> x.axis.names=names(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks,right=FALSE), mean), axes=FALSE, col="blue", cex=0.3, xlab="Temperature", ylab="Power"))
+Error: unexpected ')' in "x.axis.names=names(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks,right=FALSE), mean), axes=FALSE, col="blue", cex=0.3, xlab="Temperature", ylab="Power"))"
+> x.axis.names <- names(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks,right=FALSE), mean))
+> x.axis.names
+ [1] "[0,2)"   "[2,4)"   "[4,6)"   "[6,8)"   "[8,10)"  "[10,12)" "[12,14)" "[14,16)"
+ [9] "[16,18)" "[18,20)" "[20,22)" "[22,24)" "[24,26)" "[26,28)" "[28,30)" "[30,32)"
+[17] "[32,34)" "[34,36)" "[36,38)" "[38,40)" "[40,42)" "[42,44)" "[44,46)" "[46,48)"
+[25] "[48,50)" "[50,52)" "[52,54)" "[54,56)" "[56,58)" "[58,60)" "[60,62)" "[62,64)"
+[33] "[64,66)" "[66,68)" "[68,70)" "[70,72)" "[72,74)" "[74,76)" "[76,78)" "[78,80)"
+[41] "[80,82)" "[82,84)" "[84,86)" "[86,88)" "[88,90)" "[90,92)" "[92,94)" "[94,96)"
+[49] "[96,98)"
+> plot(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks,right=FALSE), mean), axes=FALSE, col="blue", cex=0.3, xlab="Temperature", ylab="Power")
+> x.axis.names <- names(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks,right=FALSE), mean))
+> axis(1, at=1:length(xnames), labels=xnames);axis(2)
+> plot(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks,right=FALSE), mean), axes=FALSE, col="blue", cex=0.3, xlab="Temperature", ylab="Power")
+> x.axis.names <- names(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks,right=FALSE), mean))
+> axis(1, at=1:length(x.axis.names), labels=x.axis.names);axis(2)
+> points(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks.test,right=FALSE), min), col="red", cex=0.3)
+> points(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks.test,right=FALSE), max), col="green", cex=0.3)
+> tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks.test,right=FALSE), min)
+  [0,5)  [5,10) [10,15) [15,20) [20,25) 
+56.6477 54.9205 50.2237 48.7796 46.3474 
+> tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks.test,right=FALSE), max)
+  [0,5)  [5,10) [10,15) [15,20) [20,25) 
+87.6270 90.2336 91.6283 92.9389 95.8191 
+> axis(1, at=1:length(x.axis.names), labels=x.axis.names);axis(2)
+Error in axis(1, at = 1:length(x.axis.names), labels = x.axis.names) : 
+  plot.new has not been called yet
+> plot.new()
+> axis(1, at=1:length(x.axis.names), labels=x.axis.names);axis(2)
+> x.axis.names
+ [1] "[0,2)"   "[2,4)"   "[4,6)"   "[6,8)"   "[8,10)"  "[10,12)" "[12,14)" "[14,16)" "[16,18)"
+[10] "[18,20)" "[20,22)" "[22,24)" "[24,26)" "[26,28)" "[28,30)" "[30,32)" "[32,34)" "[34,36)"
+[19] "[36,38)" "[38,40)" "[40,42)" "[42,44)" "[44,46)" "[46,48)" "[48,50)" "[50,52)" "[52,54)"
+[28] "[54,56)" "[56,58)" "[58,60)" "[60,62)" "[62,64)" "[64,66)" "[66,68)" "[68,70)" "[70,72)"
+[37] "[72,74)" "[74,76)" "[76,78)" "[78,80)" "[80,82)" "[82,84)" "[84,86)" "[86,88)" "[88,90)"
+[46] "[90,92)" "[92,94)" "[94,96)" "[96,98)"
+> axis(1, at=1:length(x.axis.names), labels=x.axis.names);
+> axis(2, at=1:length(x.axis.names), labels=x.axis.names);
+> axis(1, at=1:length(x.axis.names), labels=x.axis.names);
+Error in axis(1, at = 1:length(x.axis.names), labels = x.axis.names) : 
+  plot.new has not been called yet
+> plot.new()
+> axis(1, at=1:length(x.axis.names), labels=x.axis.names);
+> axis(2, at=1:length(x.axis.names), labels=x.axis.names);
+> plot.new()
+> axis(1, at=1:length(x.axis.names), labels=x.axis.names);
+> axis(2)
+> plot(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks,right=FALSE), mean), axes=FALSE, col="blue", cex=0.3, xlab="Temperature", ylab="Power")
+> points(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks.test,right=FALSE), min), col="red", cex=0.3)
+> points(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks.test,right=FALSE), min), col="red", cex=0.3)
+Error in plot.xy(xy.coords(x, y), type = type, ...) : 
+  plot.new has not been called yet
+> axis(1, at=1:length(x.axis.names), labels=x.axis.names);axis(2)
+Error in axis(1, at = 1:length(x.axis.names), labels = x.axis.names) : 
+  plot.new has not been called yet
+> plot.new()
+> axis(1, at=1:length(x.axis.names), labels=x.axis.names);axis(2)
+> points(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks.test,right=FALSE), min), col="red", cex=0.3)
+> plot.new()
+> axis(1, at=1:length(x.axis.names), labels=x.axis.names);axis(2, at=1:100)
+> points(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks.test,right=FALSE), min), col="red", cex=0.3)
+> plot.new()
+> axis(1, tick=TRUE, at=1:100);
+> plot.new()
+> axis(1, tick=TRUE, at=seq(0,100,by=10));
+> plot.new()
+> axis(1, at=1:length(x.axis.names), labels=x.axis.names);
+> test.mat = matrix(1:12, nrow=4, byrow = TRUE);
+> test.mat
+     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    4    5    6
+[3,]    7    8    9
+[4,]   10   11   12
+> var(test.mat)
+     [,1] [,2] [,3]
+[1,]   15   15   15
+[2,]   15   15   15
+[3,]   15   15   15
+> test.mat = matrix(c(1,2,3,4,5,6), ncol=3, byrow=TRUE)
+> test.mat
+     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    4    5    6
+> var(test.mat)
+     [,1] [,2] [,3]
+[1,]  4.5  4.5  4.5
+[2,]  4.5  4.5  4.5
+[3,]  4.5  4.5  4.5
+> test.mat = matrix(c(1,2,3,4,5,7), ncol=3, byrow=TRUE)
+> var(test.mat)
+     [,1] [,2] [,3]
+[1,]  4.5  4.5    6
+[2,]  4.5  4.5    6
+[3,]  6.0  6.0    8
+> var(c(1,2,3))
+[1] 1
+> var(c(4,5,6))
+[1] 1
+> var(c(4,5,16))
+[1] 44.33333
+> var(c(4,5,3))
+[1] 1
+> var(c(4,5,1))
+[1] 4.333333
+> tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks,right=FALSE), mean)
+   [0,2)    [2,4)    [4,6)    [6,8)   [8,10)  [10,12)  [12,14)  [14,16)  [16,18)  [18,20) 
+68.80810 67.59424 63.09021 66.48662 69.62228 68.63619 69.76366 69.15527 69.53993 67.92169 
+ [20,22)  [22,24)  [24,26)  [26,28)  [28,30)  [30,32)  [32,34)  [34,36)  [36,38)  [38,40) 
+70.16936 72.22699 69.99356 70.86809 70.39441 69.34062 70.78043 68.56519 69.17780 69.64676 
+ [40,42)  [42,44)  [44,46)  [46,48)  [48,50)  [50,52)  [52,54)  [54,56)  [56,58)  [58,60) 
+69.14286 67.05606 66.12145 68.14068 66.21368 66.30797 65.02477 63.35977 64.55695 62.46747 
+ [60,62)  [62,64)  [64,66)  [66,68)  [68,70)  [70,72)  [72,74)  [74,76)  [76,78)  [78,80) 
+61.67348 65.13010 63.49158 63.66757 67.37782 70.24780 70.86237 73.31438 74.24855 76.49859 
+ [80,82)  [82,84)  [84,86)  [86,88)  [88,90)  [90,92)  [92,94)  [94,96)  [96,98) 
+75.72409 72.56602 77.33655 75.89586 77.27179 79.46319 86.39373       NA       NA 
+> values(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks,right=FALSE), mean))
+Error: could not find function "values"
+> names(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks,right=FALSE), mean))
+ [1] "[0,2)"   "[2,4)"   "[4,6)"   "[6,8)"   "[8,10)"  "[10,12)" "[12,14)" "[14,16)"
+ [9] "[16,18)" "[18,20)" "[20,22)" "[22,24)" "[24,26)" "[26,28)" "[28,30)" "[30,32)"
+[17] "[32,34)" "[34,36)" "[36,38)" "[38,40)" "[40,42)" "[42,44)" "[44,46)" "[46,48)"
+[25] "[48,50)" "[50,52)" "[52,54)" "[54,56)" "[56,58)" "[58,60)" "[60,62)" "[62,64)"
+[33] "[64,66)" "[66,68)" "[68,70)" "[70,72)" "[72,74)" "[74,76)" "[76,78)" "[78,80)"
+[41] "[80,82)" "[82,84)" "[84,86)" "[86,88)" "[88,90)" "[90,92)" "[92,94)" "[94,96)"
+[49] "[96,98)"
+> tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks,right=FALSE), mean)
+   [0,2)    [2,4)    [4,6)    [6,8)   [8,10)  [10,12)  [12,14)  [14,16)  [16,18)  [18,20) 
+68.80810 67.59424 63.09021 66.48662 69.62228 68.63619 69.76366 69.15527 69.53993 67.92169 
+ [20,22)  [22,24)  [24,26)  [26,28)  [28,30)  [30,32)  [32,34)  [34,36)  [36,38)  [38,40) 
+70.16936 72.22699 69.99356 70.86809 70.39441 69.34062 70.78043 68.56519 69.17780 69.64676 
+ [40,42)  [42,44)  [44,46)  [46,48)  [48,50)  [50,52)  [52,54)  [54,56)  [56,58)  [58,60) 
+69.14286 67.05606 66.12145 68.14068 66.21368 66.30797 65.02477 63.35977 64.55695 62.46747 
+ [60,62)  [62,64)  [64,66)  [66,68)  [68,70)  [70,72)  [72,74)  [74,76)  [76,78)  [78,80) 
+61.67348 65.13010 63.49158 63.66757 67.37782 70.24780 70.86237 73.31438 74.24855 76.49859 
+ [80,82)  [82,84)  [84,86)  [86,88)  [88,90)  [90,92)  [92,94)  [94,96)  [96,98) 
+75.72409 72.56602 77.33655 75.89586 77.27179 79.46319 86.39373       NA       NA 
+> var(tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature,breaks,right=FALSE), mean))
+[1] NA
+> save.image("~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment/workspace-feb-2.RData")
+> test.mat
+     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    4    5    7
+> var(test.mat)
+     [,1] [,2] [,3]
+[1,]  4.5  4.5    6
+[2,]  4.5  4.5    6
+[3,]  6.0  6.0    8
+> var(c(4,5,9))
+[1] 7
+> test.mat <- matrix(c(1,2,3,4,5,6,7,8,9,10,11,12), bycol=TRUE, nrow=4)
+Error in matrix(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12), bycol = TRUE,  : 
+  unused argument (bycol = TRUE)
+> test.mat <- matrix(c(1,2,3,4,5,6,7,8,9,10,11,12), nrow=4)
+> test.mat
+     [,1] [,2] [,3]
+[1,]    1    5    9
+[2,]    2    6   10
+[3,]    3    7   11
+[4,]    4    8   12
+> var(test.mat)
+         [,1]     [,2]     [,3]
+[1,] 1.666667 1.666667 1.666667
+[2,] 1.666667 1.666667 1.666667
+[3,] 1.666667 1.666667 1.666667
+> test.mat <- matrix(c(1,2,30,40,5,6,7,8,9,10,11,12), nrow=4)
+> var(test.mat)
+          [,1]      [,2]      [,3]
+[1,] 390.91667 24.166667 24.166667
+[2,]  24.16667  1.666667  1.666667
+[3,]  24.16667  1.666667  1.666667
+> test.mat
+     [,1] [,2] [,3]
+[1,]    1    5    9
+[2,]    2    6   10
+[3,]   30    7   11
+[4,]   40    8   12
+> round(var(test.mat))
+     [,1] [,2] [,3]
+[1,]  391   24   24
+[2,]   24    2    2
+[3,]   24    2    2
+> test.mat <- matrix(c(1,2,30,40,5,6,7,8,12,11,10,9), nrow=4)
+> round(var(test.mat))
+     [,1] [,2] [,3]
+[1,]  391   24  -24
+[2,]   24    2   -2
+[3,]  -24   -2    2
+> test.mat <- matrix(c(1,2,30,40,5,6,7,8,9,10,11,12), nrow=4)
+> round(var(test.mat))
+     [,1] [,2] [,3]
+[1,]  391   24   24
+[2,]   24    2    2
+[3,]   24    2    2
+> test.mat <- matrix(c(1,2,30,40,5,6,7,8,9,11,14,18), nrow=4)
+> round(var(test.mat))
+     [,1] [,2] [,3]
+[1,]  391   24   74
+[2,]   24    2    5
+[3,]   74    5   15
+> install.packages("ggplot2")
+> library("ggplot2")
+> power.consumption.metrics.dataframe <- data.frame(power.consumption.matrix)
+> ggplot(power.consumption.metrics.dataframe) + geom_point(aes(x =rownames(power.consumption.metrics.dataframe), y = average.power), color="blue",size=1) + geom_point(aes(x =rownames(power.consumption.metrics.dataframe), y = min.power), color="red",size=1) + geom_point(aes(x =rownames(power.consumption.metrics.dataframe), y = max.power), color="green",size=1) + xlab("Temperature") + ylab("Power Consumption")
+
+> for(i in 1:47)
+{
+average.temperatures.vector[i] <- ((temperature_breaks [i]+breaks[i+1])/2);
+}
+> average.power.consumption.matrix <- matrix(average.temperatures.vector)
+> average.power.consumption.matrix <- cbind(average.power.consumption.matrix, tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature, temperature_breaks , right=FALSE), mean))
+> colnames(average.power.consumption.matrix) <- c("average.temperature", "average.power.consumption")
+> average.power.consumption.matrix
+        average.temperature average.power.consumption
+[0,2)                     1                  68.80810
+[2,4)                     3                  67.59424
+[4,6)                     5                  63.09021
+[6,8)                     7                  66.48662
+[8,10)                    9                  69.62228
+[10,12)                  11                  68.63619
+[12,14)                  13                  69.76366
+[14,16)                  15                  69.15527
+[16,18)                  17                  69.53993
+[18,20)                  19                  67.92169
+[20,22)                  21                  70.16936
+[22,24)                  23                  72.22699
+[24,26)                  25                  69.99356
+[26,28)                  27                  70.86809
+[28,30)                  29                  70.39441
+[30,32)                  31                  69.34062
+[32,34)                  33                  70.78043
+[34,36)                  35                  68.56519
+[36,38)                  37                  69.17780
+[38,40)                  39                  69.64676
+[40,42)                  41                  69.14286
+[42,44)                  43                  67.05606
+[44,46)                  45                  66.12145
+[46,48)                  47                  68.14068
+[48,50)                  49                  66.21368
+[50,52)                  51                  66.30797
+[52,54)                  53                  65.02477
+[54,56)                  55                  63.35977
+[56,58)                  57                  64.55695
+[58,60)                  59                  62.46747
+[60,62)                  61                  61.67348
+[62,64)                  63                  65.13010
+[64,66)                  65                  63.49158
+[66,68)                  67                  63.66757
+[68,70)                  69                  67.37782
+[70,72)                  71                  70.24780
+[72,74)                  73                  70.86237
+[74,76)                  75                  73.31438
+[76,78)                  77                  74.24855
+[78,80)                  79                  76.49859
+[80,82)                  81                  75.72409
+[82,84)                  83                  72.56602
+[84,86)                  85                  77.33655
+[86,88)                  87                  75.89586
+[88,90)                  89                  77.27179
+[90,92)                  91                  79.46319
+[92,94)                  93                  86.39373
+
+> var(average.power.consumption.matrix)
+                          average.temperature average.power.consumption
+average.temperature                 752.00000                  59.13762
+average.power.consumption            59.13762                  23.51404
+
+> min.power.consumption.matrix <- matrix(average.temperatures.vector)
+> min.power.consumption.matrix <- cbind(min.power.consumption.matrix, tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature, temperature_breaks , right=FALSE), min))
+> colnames(min.power.consumption.matrix) <- c("average.temperature", "min.power.consumption")
+> min.power.consumption.matrix
+        average.temperature min.power.consumption
+[0,2)                     1               68.8081
+[2,4)                     3               58.1601
+[4,6)                     5               54.9205
+[6,8)                     7               55.9044
+[8,10)                    9               60.4221
+[10,12)                  11               57.2195
+[12,14)                  13               50.2237
+[14,16)                  15               50.9279
+[16,18)                  17               49.8641
+[18,20)                  19               48.7796
+[20,22)                  21               46.3978
+[22,24)                  23               46.3474
+[24,26)                  25               47.6825
+[26,28)                  27               49.6092
+[28,30)                  29               45.9109
+[30,32)                  31               45.6151
+[32,34)                  33               45.3238
+[34,36)                  35               44.4238
+[36,38)                  37               46.4085
+[38,40)                  39               39.5643
+[40,42)                  41               40.0671
+[42,44)                  43               44.2881
+[44,46)                  45               41.2311
+[46,48)                  47               40.1007
+[48,50)                  49               40.8964
+[50,52)                  51               40.9541
+[52,54)                  53               35.2605
+[54,56)                  55               39.0662
+[56,58)                  57               39.3408
+[58,60)                  59               39.3739
+[60,62)                  61               38.8142
+[62,64)                  63               41.2297
+[64,66)                  65               41.4718
+[66,68)                  67               40.8431
+[68,70)                  69               42.7762
+[70,72)                  71               39.9362
+[72,74)                  73               48.8566
+[74,76)                  75               41.0651
+[76,78)                  77               42.7008
+[78,80)                  79               54.4724
+[80,82)                  81               56.8079
+[82,84)                  83               55.4768
+[84,86)                  85               56.9069
+[86,88)                  87               51.6770
+[88,90)                  89               49.7290
+[90,92)                  91               49.6333
+[92,94)                  93               84.2437
+> var(min.power.consumption.matrix)
+                      average.temperature min.power.consumption
+average.temperature             752.00000             -24.66792
+min.power.consumption           -24.66792              79.81808
+
+> max.power.consumption.matrix <- matrix(average.temperatures.vector)
+> max.power.consumption.matrix <- cbind(max.power.consumption.matrix, tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature, temperature_breaks , right=FALSE), max))
+> colnames(max.power.consumption.matrix) <- c("average.temperature", "max.power.consumption")
+> max.power.consumption.matrix
+        average.temperature max.power.consumption
+[0,2)                     1               68.8081
+[2,4)                     3               87.6270
+[4,6)                     5               76.7704
+[6,8)                     7               89.7771
+[8,10)                    9               90.2336
+[10,12)                  11               91.6283
+[12,14)                  13               89.7539
+[14,16)                  15               90.9417
+[16,18)                  17               92.8717
+[18,20)                  19               92.9389
+[20,22)                  21               91.5642
+[22,24)                  23               92.9723
+[24,26)                  25               95.8191
+[26,28)                  27               98.8383
+[28,30)                  29               96.7866
+[30,32)                  31               95.0473
+[32,34)                  33               96.6031
+[34,36)                  35              100.8437
+[36,38)                  37              100.9896
+[38,40)                  39               90.8336
+[40,42)                  41              100.3930
+[42,44)                  43               95.7247
+[44,46)                  45               98.9550
+[46,48)                  47               96.8664
+[48,50)                  49               93.0825
+[50,52)                  51               91.7737
+[52,54)                  53               91.9065
+[54,56)                  55               86.5059
+[56,58)                  57               87.1483
+[58,60)                  59               87.9378
+[60,62)                  61               91.3635
+[62,64)                  63               87.1151
+[64,66)                  65               85.5433
+[66,68)                  67               90.0549
+[68,70)                  69               88.1541
+[70,72)                  71               87.3791
+[72,74)                  73               85.8301
+[74,76)                  75               88.4328
+[76,78)                  77               87.2949
+[78,80)                  79               89.0667
+[80,82)                  81               91.5709
+[82,84)                  83               89.9356
+[84,86)                  85               88.1065
+[86,88)                  87               89.5421
+[88,90)                  89               92.9252
+[90,92)                  91               90.2133
+[92,94)                  93               88.1772
+> var(max.power.consumption.matrix)
+                      average.temperature max.power.consumption
+average.temperature            752.000000             -4.265874
+max.power.consumption           -4.265874             32.274647
+
+[57,]   19
+[58,]   21
+[59,]   23
+[60,]   25
+[61,]   27
+[62,]   29
+[63,]   31
+[64,]   33
+[65,]   35
+[66,]   37
+[67,]   39
+[68,]   41
+> remove(average.power.consumption.matrix)
+> average.power.consumption.matrix
+Error: object 'average.power.consumption.matrix' not found
+> average.power.consumption.matrix <- matrix(average.temperatures.vector)
+> average.power.consumption.matrix
+      [,1]
+ [1,]    1
+ [2,]    3
+ [3,]    5
+ [4,]    7
+ [5,]    9
+ [6,]   11
+ [7,]   13
+ [8,]   15
+ [9,]   17
+[10,]   19
+[11,]   21
+[12,]   23
+[13,]   25
+[14,]   27
+[15,]   29
+[16,]   31
+[17,]   33
+[18,]   35
+[19,]   37
+[20,]   39
+[21,]   41
+[22,]   43
+[23,]   45
+[24,]   47
+[25,]   49
+[26,]   51
+[27,]   53
+[28,]   55
+[29,]   57
+[30,]   59
+[31,]   61
+[32,]   63
+[33,]   65
+[34,]   67
+[35,]   69
+[36,]   71
+[37,]   73
+[38,]   75
+[39,]   77
+[40,]   79
+[41,]   81
+[42,]   83
+[43,]   85
+[44,]   87
+[45,]   89
+[46,]   91
+[47,]   93
+> cbind(average.power.consumption.matrix, tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature, breaks, right=FALSE), mean))
+        [,1]     [,2]
+[0,2)      1 68.80810
+[2,4)      3 67.59424
+[4,6)      5 63.09021
+[6,8)      7 66.48662
+[8,10)     9 69.62228
+[10,12)   11 68.63619
+[12,14)   13 69.76366
+[14,16)   15 69.15527
+[16,18)   17 69.53993
+[18,20)   19 67.92169
+[20,22)   21 70.16936
+[22,24)   23 72.22699
+[24,26)   25 69.99356
+[26,28)   27 70.86809
+[28,30)   29 70.39441
+[30,32)   31 69.34062
+[32,34)   33 70.78043
+[34,36)   35 68.56519
+[36,38)   37 69.17780
+[38,40)   39 69.64676
+[40,42)   41 69.14286
+[42,44)   43 67.05606
+[44,46)   45 66.12145
+[46,48)   47 68.14068
+[48,50)   49 66.21368
+[50,52)   51 66.30797
+[52,54)   53 65.02477
+[54,56)   55 63.35977
+[56,58)   57 64.55695
+[58,60)   59 62.46747
+[60,62)   61 61.67348
+[62,64)   63 65.13010
+[64,66)   65 63.49158
+[66,68)   67 63.66757
+[68,70)   69 67.37782
+[70,72)   71 70.24780
+[72,74)   73 70.86237
+[74,76)   75 73.31438
+[76,78)   77 74.24855
+[78,80)   79 76.49859
+[80,82)   81 75.72409
+[82,84)   83 72.56602
+[84,86)   85 77.33655
+[86,88)   87 75.89586
+[88,90)   89 77.27179
+[90,92)   91 79.46319
+[92,94)   93 86.39373
+> average.power.consumption.matrix <- cbind(average.power.consumption.matrix, tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature, breaks, right=FALSE), mean))
+> colnames(average.power.consumption.matrix) <- c("Average Temperature", "Average Power Consumption")
+> average.power.consumption.matrix
+        Average Temperature Average Power Consumption
+[0,2)                     1                  68.80810
+[2,4)                     3                  67.59424
+[4,6)                     5                  63.09021
+[6,8)                     7                  66.48662
+[8,10)                    9                  69.62228
+[10,12)                  11                  68.63619
+[12,14)                  13                  69.76366
+[14,16)                  15                  69.15527
+[16,18)                  17                  69.53993
+[18,20)                  19                  67.92169
+[20,22)                  21                  70.16936
+[22,24)                  23                  72.22699
+[24,26)                  25                  69.99356
+[26,28)                  27                  70.86809
+[28,30)                  29                  70.39441
+[30,32)                  31                  69.34062
+[32,34)                  33                  70.78043
+[34,36)                  35                  68.56519
+[36,38)                  37                  69.17780
+[38,40)                  39                  69.64676
+[40,42)                  41                  69.14286
+[42,44)                  43                  67.05606
+[44,46)                  45                  66.12145
+[46,48)                  47                  68.14068
+[48,50)                  49                  66.21368
+[50,52)                  51                  66.30797
+[52,54)                  53                  65.02477
+[54,56)                  55                  63.35977
+[56,58)                  57                  64.55695
+[58,60)                  59                  62.46747
+[60,62)                  61                  61.67348
+[62,64)                  63                  65.13010
+[64,66)                  65                  63.49158
+[66,68)                  67                  63.66757
+[68,70)                  69                  67.37782
+[70,72)                  71                  70.24780
+[72,74)                  73                  70.86237
+[74,76)                  75                  73.31438
+[76,78)                  77                  74.24855
+[78,80)                  79                  76.49859
+[80,82)                  81                  75.72409
+[82,84)                  83                  72.56602
+[84,86)                  85                  77.33655
+[86,88)                  87                  75.89586
+[88,90)                  89                  77.27179
+[90,92)                  91                  79.46319
+[92,94)                  93                  86.39373
+> colnames(average.power.consumption.matrix) <- c("average.temperature", "average.power.consumption")
+> average.power.consumption.matrix
+        average.temperature average.power.consumption
+[0,2)                     1                  68.80810
+[2,4)                     3                  67.59424
+[4,6)                     5                  63.09021
+[6,8)                     7                  66.48662
+[8,10)                    9                  69.62228
+[10,12)                  11                  68.63619
+[12,14)                  13                  69.76366
+[14,16)                  15                  69.15527
+[16,18)                  17                  69.53993
+[18,20)                  19                  67.92169
+[20,22)                  21                  70.16936
+[22,24)                  23                  72.22699
+[24,26)                  25                  69.99356
+[26,28)                  27                  70.86809
+[28,30)                  29                  70.39441
+[30,32)                  31                  69.34062
+[32,34)                  33                  70.78043
+[34,36)                  35                  68.56519
+[36,38)                  37                  69.17780
+[38,40)                  39                  69.64676
+[40,42)                  41                  69.14286
+[42,44)                  43                  67.05606
+[44,46)                  45                  66.12145
+[46,48)                  47                  68.14068
+[48,50)                  49                  66.21368
+[50,52)                  51                  66.30797
+[52,54)                  53                  65.02477
+[54,56)                  55                  63.35977
+[56,58)                  57                  64.55695
+[58,60)                  59                  62.46747
+[60,62)                  61                  61.67348
+[62,64)                  63                  65.13010
+[64,66)                  65                  63.49158
+[66,68)                  67                  63.66757
+[68,70)                  69                  67.37782
+[70,72)                  71                  70.24780
+[72,74)                  73                  70.86237
+[74,76)                  75                  73.31438
+[76,78)                  77                  74.24855
+[78,80)                  79                  76.49859
+[80,82)                  81                  75.72409
+[82,84)                  83                  72.56602
+[84,86)                  85                  77.33655
+[86,88)                  87                  75.89586
+[88,90)                  89                  77.27179
+[90,92)                  91                  79.46319
+[92,94)                  93                  86.39373
+> var(average.power.consumption.matrix)
+                          average.temperature average.power.consumption
+average.temperature                 752.00000                  59.13762
+average.power.consumption            59.13762                  23.51404
+> min.power.consumption.matrix <- matrix(average.temperatures.vector)
+> min.power.consumption.matrix <- cbind(min.power.consumption.matrix, tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature, breaks, right=FALSE), min))
+> colnames(min.power.consumption.matrix) <- c("average.temperature", "min.power.consumption")
+> min.power.consumption.matmin
+Error: object 'min.power.consumption.matmin' not found
+> min.power.consumption.matrix
+        average.temperature min.power.consumption
+[0,2)                     1               68.8081
+[2,4)                     3               58.1601
+[4,6)                     5               54.9205
+[6,8)                     7               55.9044
+[8,10)                    9               60.4221
+[10,12)                  11               57.2195
+[12,14)                  13               50.2237
+[14,16)                  15               50.9279
+[16,18)                  17               49.8641
+[18,20)                  19               48.7796
+[20,22)                  21               46.3978
+[22,24)                  23               46.3474
+[24,26)                  25               47.6825
+[26,28)                  27               49.6092
+[28,30)                  29               45.9109
+[30,32)                  31               45.6151
+[32,34)                  33               45.3238
+[34,36)                  35               44.4238
+[36,38)                  37               46.4085
+[38,40)                  39               39.5643
+[40,42)                  41               40.0671
+[42,44)                  43               44.2881
+[44,46)                  45               41.2311
+[46,48)                  47               40.1007
+[48,50)                  49               40.8964
+[50,52)                  51               40.9541
+[52,54)                  53               35.2605
+[54,56)                  55               39.0662
+[56,58)                  57               39.3408
+[58,60)                  59               39.3739
+[60,62)                  61               38.8142
+[62,64)                  63               41.2297
+[64,66)                  65               41.4718
+[66,68)                  67               40.8431
+[68,70)                  69               42.7762
+[70,72)                  71               39.9362
+[72,74)                  73               48.8566
+[74,76)                  75               41.0651
+[76,78)                  77               42.7008
+[78,80)                  79               54.4724
+[80,82)                  81               56.8079
+[82,84)                  83               55.4768
+[84,86)                  85               56.9069
+[86,88)                  87               51.6770
+[88,90)                  89               49.7290
+[90,92)                  91               49.6333
+[92,94)                  93               84.2437
+> var(min.power.consumption.matrix)
+                      average.temperature min.power.consumption
+average.temperature             752.00000             -24.66792
+min.power.consumption           -24.66792              79.81808
+> max.power.consumption.matrix <- matrix(average.temperatures.vectmax
++ )
+Error in matrix(average.temperatures.vectmax) : 
+  object 'average.temperatures.vectmax' not found
+> max.power.consumption.matrix <- matrix(average.temperatures.vectmax()
++ )
+Error in matrix(average.temperatures.vectmax()) : 
+  could not find function "average.temperatures.vectmax"
+> max.power.consumption.matrix <- matrix(average.temperatures.vector)
+> max.power.consumption.matrix <- cbind(max.power.consumption.matrix, tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature, breaks, right=FALSE), max))
+> colnames(max.power.consumption.matrix) <- c("average.temperature", "max.power.consumption")
+> max.power.consumption.matrix
+        average.temperature max.power.consumption
+[0,2)                     1               68.8081
+[2,4)                     3               87.6270
+[4,6)                     5               76.7704
+[6,8)                     7               89.7771
+[8,10)                    9               90.2336
+[10,12)                  11               91.6283
+[12,14)                  13               89.7539
+[14,16)                  15               90.9417
+[16,18)                  17               92.8717
+[18,20)                  19               92.9389
+[20,22)                  21               91.5642
+[22,24)                  23               92.9723
+[24,26)                  25               95.8191
+[26,28)                  27               98.8383
+[28,30)                  29               96.7866
+[30,32)                  31               95.0473
+[32,34)                  33               96.6031
+[34,36)                  35              100.8437
+[36,38)                  37              100.9896
+[38,40)                  39               90.8336
+[40,42)                  41              100.3930
+[42,44)                  43               95.7247
+[44,46)                  45               98.9550
+[46,48)                  47               96.8664
+[48,50)                  49               93.0825
+[50,52)                  51               91.7737
+[52,54)                  53               91.9065
+[54,56)                  55               86.5059
+[56,58)                  57               87.1483
+[58,60)                  59               87.9378
+[60,62)                  61               91.3635
+[62,64)                  63               87.1151
+[64,66)                  65               85.5433
+[66,68)                  67               90.0549
+[68,70)                  69               88.1541
+[70,72)                  71               87.3791
+[72,74)                  73               85.8301
+[74,76)                  75               88.4328
+[76,78)                  77               87.2949
+[78,80)                  79               89.0667
+[80,82)                  81               91.5709
+[82,84)                  83               89.9356
+[84,86)                  85               88.1065
+[86,88)                  87               89.5421
+[88,90)                  89               92.9252
+[90,92)                  91               90.2133
+[92,94)                  93               88.1772
+> var(max.power.consumption.matrix)
+                      average.temperature max.power.consumption
+average.temperature            752.000000             -4.265874
+max.power.consumption           -4.265874             32.274647
+> var(c(1,3,5))
+[1] 4
+> power.consumption.matrix
+        average.power min.power max.power
+[0,2)        68.80810   68.8081   68.8081
+[2,4)        67.59424   58.1601   87.6270
+[4,6)        63.09021   54.9205   76.7704
+[6,8)        66.48662   55.9044   89.7771
+[8,10)       69.62228   60.4221   90.2336
+[10,12)      68.63619   57.2195   91.6283
+[12,14)      69.76366   50.2237   89.7539
+[14,16)      69.15527   50.9279   90.9417
+[16,18)      69.53993   49.8641   92.8717
+[18,20)      67.92169   48.7796   92.9389
+[20,22)      70.16936   46.3978   91.5642
+[22,24)      72.22699   46.3474   92.9723
+[24,26)      69.99356   47.6825   95.8191
+[26,28)      70.86809   49.6092   98.8383
+[28,30)      70.39441   45.9109   96.7866
+[30,32)      69.34062   45.6151   95.0473
+[32,34)      70.78043   45.3238   96.6031
+[34,36)      68.56519   44.4238  100.8437
+[36,38)      69.17780   46.4085  100.9896
+[38,40)      69.64676   39.5643   90.8336
+[40,42)      69.14286   40.0671  100.3930
+[42,44)      67.05606   44.2881   95.7247
+[44,46)      66.12145   41.2311   98.9550
+[46,48)      68.14068   40.1007   96.8664
+[48,50)      66.21368   40.8964   93.0825
+[50,52)      66.30797   40.9541   91.7737
+[52,54)      65.02477   35.2605   91.9065
+[54,56)      63.35977   39.0662   86.5059
+[56,58)      64.55695   39.3408   87.1483
+[58,60)      62.46747   39.3739   87.9378
+[60,62)      61.67348   38.8142   91.3635
+[62,64)      65.13010   41.2297   87.1151
+[64,66)      63.49158   41.4718   85.5433
+[66,68)      63.66757   40.8431   90.0549
+[68,70)      67.37782   42.7762   88.1541
+[70,72)      70.24780   39.9362   87.3791
+[72,74)      70.86237   48.8566   85.8301
+[74,76)      73.31438   41.0651   88.4328
+[76,78)      74.24855   42.7008   87.2949
+[78,80)      76.49859   54.4724   89.0667
+[80,82)      75.72409   56.8079   91.5709
+[82,84)      72.56602   55.4768   89.9356
+[84,86)      77.33655   56.9069   88.1065
+[86,88)      75.89586   51.6770   89.5421
+[88,90)      77.27179   49.7290   92.9252
+[90,92)      79.46319   49.6333   90.2133
+[92,94)      86.39373   84.2437   88.1772
+> var(power.consumption.matrix)
+              average.power min.power max.power
+average.power      23.51404  25.80317   1.56277
+min.power          25.80317  79.81808 -17.70607
+max.power           1.56277 -17.70607  32.27465
+> V <- c(7,2,1,0,3,-1,-3,4)
+> V
+[1]  7  2  1  0  3 -1 -3  4
+> A <- matrix(V, nrow=4)
+> A
+     [,1] [,2]
+[1,]    7    3
+[2,]    2   -1
+[3,]    1   -3
+[4,]    0    4
+> AT <- t(A)
+> AT
+     [,1] [,2] [,3] [,4]
+[1,]    7    2    1    0
+[2,]    3   -1   -3    4
+> A %*% AT
+     [,1] [,2] [,3] [,4]
+[1,]   58   11   -2   12
+[2,]   11    5    5   -4
+[3,]   -2    5   10  -12
+[4,]   12   -4  -12   16
+> AT %*% A
+     [,1] [,2]
+[1,]   54   16
+[2,]   16   35
+> solve(A %*% AT)
+Error in solve.default(A %*% AT) : 
+  Lapack routine dgesv: system is exactly singular: U[4,4] = 0
+> solve(AT %*% A)
+             [,1]         [,2]
+[1,]  0.021419829 -0.009791922
+[2,] -0.009791922  0.033047736
+> V <- c(V, c(-2))
+> V
+[1]  7  2  1  0  3 -1 -3  4 -2
+> B <- matrix(V, nrow=3)
+> B
+     [,1] [,2] [,3]
+[1,]    7    0   -3
+[2,]    2    3    4
+[3,]    1   -1   -2
+> Binv <- solve(B)
+> Binv
+     [,1] [,2] [,3]
+[1,]   -2    3    9
+[2,]    8  -11  -34
+[3,]   -5    7   21
+> round(B %*% Binv)
+     [,1] [,2] [,3]
+[1,]    1    0    0
+[2,]    0    1    0
+[3,]    0    0    1
+> round(Binv %*% B)
+     [,1] [,2] [,3]
+[1,]    1    0    0
+[2,]    0    1    0
+[3,]    0    0    1
+> eigen(B)
+$values
+[1] 6.854102 1.000000 0.145898
+
+$vectors
+           [,1]       [,2]       [,3]
+[1,] 0.86822600  0.1825742  0.2159107
+[2,] 0.49436902 -0.9128709 -0.8426423
+[3,] 0.04222416  0.3651484  0.4932914
+
+> C <- eigen(B)$vectors
+> C %*% B
+         [,1]       [,2]       [,3]
+[1,] 6.658641  0.3318118 -2.3062028
+[2,] 0.792199 -1.8959704 -3.4493061
+[3,] 1.519157  0.6021537  0.3473382
+> B %*% C
+          [,1]       [,2]        [,3]
+[1,] 5.9509095  0.1825742  0.03150095
+[2,] 3.3884557 -0.9128709 -0.12293986
+[3,] 0.2894087  0.3651484  0.07197025
+> det(C %*% B)
+[1] -0.1275499
+> det(B %*% C)
+[1] -0.1275499
+> dimnames(B) <- list(c("R1", "R2", "R3"), c("C1", "C2", "C3"))
+> B
+   C1 C2 C3
+R1  7  0 -3
+R2  2  3  4
+R3  1 -1 -2
+> B.data.frame <- data.frame(B)
+> B.data.frame
+   C1 C2 C3
+R1  7  0 -3
+R2  2  3  4
+R3  1 -1 -2
+> class(B.data.frame)
+[1] "data.frame"
+> power.consumption.dataframe <- read.delim("2006Data.csv", sep=",")
+> class(power.consumption.dataframe)
+[1] "data.frame"
+> plot(power.consumption.dataframe$Temperature, power.consumption.dataframe$Power, xlab="Temperature", ylab="Power Consumption")
+> power.consumption.dataframe <- read.delim("2006Data.csv", sep=",")
+> plot(power.consumption.dataframe$Hour, power.consumption.dataframe$Power, xlab="Hour of the day", ylab="Power Consumption")
+> power.consumption.dataframe <- read.delim("2006Data.csv", sep=",")
+> boxplot(Power ~ Hour, data=power.consumption.dataframe, ylab="Power Consumption", xlab="Hour of the day")
+> power.consumption.dataframe <- read.delim("2006Data.csv", sep=",")
+> [1]  1.475 93.000mption.dataframe$Temperature)
+"rror: unexpected input in "range(power.consumption.dataframe$Temperature)
+> range(power.consumption.dataframe$Temperature)
+[1]  1.475 93.000
+> temperature_breaks <- seq(0,94,by=2)
+> tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature, temperature_breaks, right=FALSE), mean)
+   [0,2)    [2,4)    [4,6)    [6,8)   [8,10)  [10,12)  [12,14)  [14,16)  [16,18) 
+68.80810 67.59424 63.09021 66.48662 69.62228 68.63619 69.76366 69.15527 69.53993 
+ [18,20)  [20,22)  [22,24)  [24,26)  [26,28)  [28,30)  [30,32)  [32,34)  [34,36) 
+67.92169 70.16936 72.22699 69.99356 70.86809 70.39441 69.34062 70.78043 68.56519 
+ [36,38)  [38,40)  [40,42)  [42,44)  [44,46)  [46,48)  [48,50)  [50,52)  [52,54) 
+69.17780 69.64676 69.14286 67.05606 66.12145 68.14068 66.21368 66.30797 65.02477 
+ [54,56)  [56,58)  [58,60)  [60,62)  [62,64)  [64,66)  [66,68)  [68,70)  [70,72) 
+63.35977 64.55695 62.46747 61.67348 65.13010 63.49158 63.66757 67.37782 70.24780 
+ [72,74)  [74,76)  [76,78)  [78,80)  [80,82)  [82,84)  [84,86)  [86,88)  [88,90) 
+70.86237 73.31438 74.24855 76.49859 75.72409 72.56602 77.33655 75.89586 77.27179 
+ [90,92)  [92,94) 
+79.46319 86.39373 
+> getwd()
+[1] "/Users/rpulekar/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment"
+> setwd(~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment)
+Error: unexpected '/' in "setwd(~/"
+> setwd("~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment")
+> setwd("~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment")
+> power.consumption.dataframe <- read.delim("2006Data.csv", sep=",")
+> temperature_breaks <- seq(0,94,by=2)
+> tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature, temperature_breaks, right=FALSE), mean)
+   [0,2)    [2,4)    [4,6)    [6,8)   [8,10)  [10,12)  [12,14)  [14,16)  [16,18) 
+68.80810 67.59424 63.09021 66.48662 69.62228 68.63619 69.76366 69.15527 69.53993 
+ [18,20)  [20,22)  [22,24)  [24,26)  [26,28)  [28,30)  [30,32)  [32,34)  [34,36) 
+67.92169 70.16936 72.22699 69.99356 70.86809 70.39441 69.34062 70.78043 68.56519 
+ [36,38)  [38,40)  [40,42)  [42,44)  [44,46)  [46,48)  [48,50)  [50,52)  [52,54) 
+69.17780 69.64676 69.14286 67.05606 66.12145 68.14068 66.21368 66.30797 65.02477 
+ [54,56)  [56,58)  [58,60)  [60,62)  [62,64)  [64,66)  [66,68)  [68,70)  [70,72) 
+63.35977 64.55695 62.46747 61.67348 65.13010 63.49158 63.66757 67.37782 70.24780 
+ [72,74)  [74,76)  [76,78)  [78,80)  [80,82)  [82,84)  [84,86)  [86,88)  [88,90) 
+70.86237 73.31438 74.24855 76.49859 75.72409 72.56602 77.33655 75.89586 77.27179 
+ [90,92)  [92,94) 
+79.46319 86.39373 
+> setwd("~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment")
+> power.consumption.dataframe <- read.delim("2006Data.csv", sep=",")
+> temperature_breaks <- seq(0,94,by=2)
+> tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature, temperature_breaks, right=FALSE), min)
+  [0,2)   [2,4)   [4,6)   [6,8)  [8,10) [10,12) [12,14) [14,16) [16,18) [18,20) 
+68.8081 58.1601 54.9205 55.9044 60.4221 57.2195 50.2237 50.9279 49.8641 48.7796 
+[20,22) [22,24) [24,26) [26,28) [28,30) [30,32) [32,34) [34,36) [36,38) [38,40) 
+46.3978 46.3474 47.6825 49.6092 45.9109 45.6151 45.3238 44.4238 46.4085 39.5643 
+[40,42) [42,44) [44,46) [46,48) [48,50) [50,52) [52,54) [54,56) [56,58) [58,60) 
+40.0671 44.2881 41.2311 40.1007 40.8964 40.9541 35.2605 39.0662 39.3408 39.3739 
+[60,62) [62,64) [64,66) [66,68) [68,70) [70,72) [72,74) [74,76) [76,78) [78,80) 
+38.8142 41.2297 41.4718 40.8431 42.7762 39.9362 48.8566 41.0651 42.7008 54.4724 
+[80,82) [82,84) [84,86) [86,88) [88,90) [90,92) [92,94) 
+56.8079 55.4768 56.9069 51.6770 49.7290 49.6333 84.2437 
+> setwd("~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment")
+> power.consumption.dataframe <- read.delim("2006Data.csv", sep=",")
+> temperature_breaks <- seq(0,94,by=2)
+> tapply(power.consumption.data$Power, cut(power.consumption.data$Temperature, temperature_breaks, right=FALSE), max)
+   [0,2)    [2,4)    [4,6)    [6,8)   [8,10)  [10,12)  [12,14)  [14,16)  [16,18) 
+ 68.8081  87.6270  76.7704  89.7771  90.2336  91.6283  89.7539  90.9417  92.8717 
+ [18,20)  [20,22)  [22,24)  [24,26)  [26,28)  [28,30)  [30,32)  [32,34)  [34,36) 
+ 92.9389  91.5642  92.9723  95.8191  98.8383  96.7866  95.0473  96.6031 100.8437 
+ [36,38)  [38,40)  [40,42)  [42,44)  [44,46)  [46,48)  [48,50)  [50,52)  [52,54) 
+100.9896  90.8336 100.3930  95.7247  98.9550  96.8664  93.0825  91.7737  91.9065 
+ [54,56)  [56,58)  [58,60)  [60,62)  [62,64)  [64,66)  [66,68)  [68,70)  [70,72) 
+ 86.5059  87.1483  87.9378  91.3635  87.1151  85.5433  90.0549  88.1541  87.3791 
+ [72,74)  [74,76)  [76,78)  [78,80)  [80,82)  [82,84)  [84,86)  [86,88)  [88,90) 
+ 85.8301  88.4328  87.2949  89.0667  91.5709  89.9356  88.1065  89.5421  92.9252 
+ [90,92)  [92,94) 
+ 90.2133  88.1772 
+> setwd("~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment")
+> power.consumption.dataframe <- read.delim("2006Data.csv", sep=",")
+> temperature_breaks <- seq(0,94,by=2)
+> setwd("~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment")
+> power.consumption.dataframe <- read.delim("2006Data.csv", sep=",")
+> temperature_breaks <- seq(0,94,by=2)
+> tapply(power.consumption.dataframe$Power, cut(power.consumption.dataframe$Temperature, temperature_breaks, right=FALSE), mean)
+   [0,2)    [2,4)    [4,6)    [6,8)   [8,10)  [10,12)  [12,14)  [14,16)  [16,18) 
+68.80810 67.59424 63.09021 66.48662 69.62228 68.63619 69.76366 69.15527 69.53993 
+ [18,20)  [20,22)  [22,24)  [24,26)  [26,28)  [28,30)  [30,32)  [32,34)  [34,36) 
+67.92169 70.16936 72.22699 69.99356 70.86809 70.39441 69.34062 70.78043 68.56519 
+ [36,38)  [38,40)  [40,42)  [42,44)  [44,46)  [46,48)  [48,50)  [50,52)  [52,54) 
+69.17780 69.64676 69.14286 67.05606 66.12145 68.14068 66.21368 66.30797 65.02477 
+ [54,56)  [56,58)  [58,60)  [60,62)  [62,64)  [64,66)  [66,68)  [68,70)  [70,72) 
+63.35977 64.55695 62.46747 61.67348 65.13010 63.49158 63.66757 67.37782 70.24780 
+ [72,74)  [74,76)  [76,78)  [78,80)  [80,82)  [82,84)  [84,86)  [86,88)  [88,90) 
+70.86237 73.31438 74.24855 76.49859 75.72409 72.56602 77.33655 75.89586 77.27179 
+ [90,92)  [92,94) 
+79.46319 86.39373 
+> setwd("~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment")
+> power.consumption.dataframe <- read.delim("2006Data.csv", sep=",")
+> temperature_breaks <- seq(0,94,by=2)
+> tapply(power.consumption.dataframe$Power, cut(power.consumption.dataframe$Temperature, temperature_breaks, right=FALSE), min)
+  [0,2)   [2,4)   [4,6)   [6,8)  [8,10) [10,12) [12,14) [14,16) [16,18) [18,20) 
+68.8081 58.1601 54.9205 55.9044 60.4221 57.2195 50.2237 50.9279 49.8641 48.7796 
+[20,22) [22,24) [24,26) [26,28) [28,30) [30,32) [32,34) [34,36) [36,38) [38,40) 
+46.3978 46.3474 47.6825 49.6092 45.9109 45.6151 45.3238 44.4238 46.4085 39.5643 
+[40,42) [42,44) [44,46) [46,48) [48,50) [50,52) [52,54) [54,56) [56,58) [58,60) 
+40.0671 44.2881 41.2311 40.1007 40.8964 40.9541 35.2605 39.0662 39.3408 39.3739 
+[60,62) [62,64) [64,66) [66,68) [68,70) [70,72) [72,74) [74,76) [76,78) [78,80) 
+38.8142 41.2297 41.4718 40.8431 42.7762 39.9362 48.8566 41.0651 42.7008 54.4724 
+[80,82) [82,84) [84,86) [86,88) [88,90) [90,92) [92,94) 
+56.8079 55.4768 56.9069 51.6770 49.7290 49.6333 84.2437 
+> setwd("~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment")
+> power.consumption.dataframe <- read.delim("2006Data.csv", sep=",")
+> temperature_breaks <- seq(0,94,by=2)
+> tapply(power.consumption.dataframe$Power, cut(power.consumption.dataframe$Temperature, temperature_breaks, right=FALSE), max)
+   [0,2)    [2,4)    [4,6)    [6,8)   [8,10)  [10,12)  [12,14)  [14,16)  [16,18) 
+ 68.8081  87.6270  76.7704  89.7771  90.2336  91.6283  89.7539  90.9417  92.8717 
+ [18,20)  [20,22)  [22,24)  [24,26)  [26,28)  [28,30)  [30,32)  [32,34)  [34,36) 
+ 92.9389  91.5642  92.9723  95.8191  98.8383  96.7866  95.0473  96.6031 100.8437 
+ [36,38)  [38,40)  [40,42)  [42,44)  [44,46)  [46,48)  [48,50)  [50,52)  [52,54) 
+100.9896  90.8336 100.3930  95.7247  98.9550  96.8664  93.0825  91.7737  91.9065 
+ [54,56)  [56,58)  [58,60)  [60,62)  [62,64)  [64,66)  [66,68)  [68,70)  [70,72) 
+ 86.5059  87.1483  87.9378  91.3635  87.1151  85.5433  90.0549  88.1541  87.3791 
+ [72,74)  [74,76)  [76,78)  [78,80)  [80,82)  [82,84)  [84,86)  [86,88)  [88,90) 
+ 85.8301  88.4328  87.2949  89.0667  91.5709  89.9356  88.1065  89.5421  92.9252 
+ [90,92)  [92,94) 
+ 90.2133  88.1772 
+> setwd("~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment")
+> power.consumption.dataframe <- read.delim("2006Data.csv", sep=",")
+> temperature_breaks <- seq(0,94,by=2)
+> power.consumption.matrix <- matrix(tapply(power.consumption.dataframe$Power, cut(power.consumption.dataframe$Temperature, temperature_breaks, right=FALSE), mean))
+> power.consumption.matrix <- cbind(power.consumption.matrix, tapply(power.consumption.dataframe$Power, cut(power.consumption.dataframe$Temperature, temperature_breaks, right=FALSE), min))
+> power.consumption.matrix <- cbind(power.consumption.matrix, tapply(power.consumption.dataframe$Power, cut(power.consumption.dataframe$Temperature, temperature_breaks, right=FALSE), max))
+> colnames(power.consumption.matrix) <- c("average.power", "min.power", "max.power")
+> power.consumption.matrix
+        average.power min.power max.power
+[0,2)        68.80810   68.8081   68.8081
+[2,4)        67.59424   58.1601   87.6270
+[4,6)        63.09021   54.9205   76.7704
+[6,8)        66.48662   55.9044   89.7771
+[8,10)       69.62228   60.4221   90.2336
+[10,12)      68.63619   57.2195   91.6283
+[12,14)      69.76366   50.2237   89.7539
+[14,16)      69.15527   50.9279   90.9417
+[16,18)      69.53993   49.8641   92.8717
+[18,20)      67.92169   48.7796   92.9389
+[20,22)      70.16936   46.3978   91.5642
+[22,24)      72.22699   46.3474   92.9723
+[24,26)      69.99356   47.6825   95.8191
+[26,28)      70.86809   49.6092   98.8383
+[28,30)      70.39441   45.9109   96.7866
+[30,32)      69.34062   45.6151   95.0473
+[32,34)      70.78043   45.3238   96.6031
+[34,36)      68.56519   44.4238  100.8437
+[36,38)      69.17780   46.4085  100.9896
+[38,40)      69.64676   39.5643   90.8336
+[40,42)      69.14286   40.0671  100.3930
+[42,44)      67.05606   44.2881   95.7247
+[44,46)      66.12145   41.2311   98.9550
+[46,48)      68.14068   40.1007   96.8664
+[48,50)      66.21368   40.8964   93.0825
+[50,52)      66.30797   40.9541   91.7737
+[52,54)      65.02477   35.2605   91.9065
+[54,56)      63.35977   39.0662   86.5059
+[56,58)      64.55695   39.3408   87.1483
+[58,60)      62.46747   39.3739   87.9378
+[60,62)      61.67348   38.8142   91.3635
+[62,64)      65.13010   41.2297   87.1151
+[64,66)      63.49158   41.4718   85.5433
+[66,68)      63.66757   40.8431   90.0549
+[68,70)      67.37782   42.7762   88.1541
+[70,72)      70.24780   39.9362   87.3791
+[72,74)      70.86237   48.8566   85.8301
+[74,76)      73.31438   41.0651   88.4328
+[76,78)      74.24855   42.7008   87.2949
+[78,80)      76.49859   54.4724   89.0667
+[80,82)      75.72409   56.8079   91.5709
+[82,84)      72.56602   55.4768   89.9356
+[84,86)      77.33655   56.9069   88.1065
+[86,88)      75.89586   51.6770   89.5421
+[88,90)      77.27179   49.7290   92.9252
+[90,92)      79.46319   49.6333   90.2133
+[92,94)      86.39373   84.2437   88.1772
+> install.packages("ggplot2")
+Error in install.packages : Updating loaded packages
+> library("ggplot2")
+> power.consumption.metrics.dataframe <- data.frame(power.consumption.matrix)
+> ggplot(power.consumption.metrics.dataframe) + geom_point(aes(x =rownames(power.consumption.metrics.dataframe), y = average.power), color="blue",size=1) + geom_point(aes(x =rownames(power.consumption.metrics.dataframe), y = min.power), color="red",size=1) + geom_point(aes(x =rownames(power.consumption.metrics.dataframe), y = max.power), color="green",size=1) + xlab("Temperature") + ylab("Power Consumption")
+> setwd("~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment")
+> power.consumption.dataframe <- read.delim("2006Data.csv", sep=",")
+> temperature_breaks <- seq(0,94,by=2)
+> }   average.temperatures.vector[i] <- ((temperature_breaks [i]+breaks[i+1])/2);
+"rror: unexpected input in "for(i in 1:47)
+> }   average.temperatures.vector[i] <- ((temperature_breaks [i]+breaks[i+1])/2);
+"rror: unexpected input in "for(i in 1:47)
+> for(i in 1:47)
++ {
++ average.temperatures.vector[i] <- ((temperature_breaks [i]+breaks[i+1])/2);
++ }
+> average.power.consumption.matrix <- matrix(average.temperatures.vector)
+> average.power.consumption.matrix <- cbind(average.power.consumption.matrix, tapply(power.consumption.dataframe$Power, cut(power.consumption.dataframe$Temperature, temperature_breaks , right=FALSE), mean))
+> colnames(average.power.consumption.matrix) <- c("average.temperature", "average.power.consumption")
+> average.power.consumption.matrix
+        average.temperature average.power.consumption
+[0,2)                     1                  68.80810
+[2,4)                     3                  67.59424
+[4,6)                     5                  63.09021
+[6,8)                     7                  66.48662
+[8,10)                    9                  69.62228
+[10,12)                  11                  68.63619
+[12,14)                  13                  69.76366
+[14,16)                  15                  69.15527
+[16,18)                  17                  69.53993
+[18,20)                  19                  67.92169
+[20,22)                  21                  70.16936
+[22,24)                  23                  72.22699
+[24,26)                  25                  69.99356
+[26,28)                  27                  70.86809
+[28,30)                  29                  70.39441
+[30,32)                  31                  69.34062
+[32,34)                  33                  70.78043
+[34,36)                  35                  68.56519
+[36,38)                  37                  69.17780
+[38,40)                  39                  69.64676
+[40,42)                  41                  69.14286
+[42,44)                  43                  67.05606
+[44,46)                  45                  66.12145
+[46,48)                  47                  68.14068
+[48,50)                  49                  66.21368
+[50,52)                  51                  66.30797
+[52,54)                  53                  65.02477
+[54,56)                  55                  63.35977
+[56,58)                  57                  64.55695
+[58,60)                  59                  62.46747
+[60,62)                  61                  61.67348
+[62,64)                  63                  65.13010
+[64,66)                  65                  63.49158
+[66,68)                  67                  63.66757
+[68,70)                  69                  67.37782
+[70,72)                  71                  70.24780
+[72,74)                  73                  70.86237
+[74,76)                  75                  73.31438
+[76,78)                  77                  74.24855
+[78,80)                  79                  76.49859
+[80,82)                  81                  75.72409
+[82,84)                  83                  72.56602
+[84,86)                  85                  77.33655
+[86,88)                  87                  75.89586
+[88,90)                  89                  77.27179
+[90,92)                  91                  79.46319
+[92,94)                  93                  86.39373
+> var(average.power.consumption.matrix)
+                          average.temperature average.power.consumption
+average.temperature                 752.00000                  59.13762
+average.power.consumption            59.13762                  23.51404
+> setwd("~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment")
+> power.consumption.dataframe <- read.delim("2006Data.csv", sep=",")
+> min.power.consumption.matrix <- matrix(average.temperatures.vector)
+> min.power.consumption.matrix <- cbind(min.power.consumption.matrix, tapply(power.consumption.dataframe$Power, cut(power.consumption.dataframe$Temperature, temperature_breaks , right=FALSE), min))
+> colnames(min.power.consumption.matrix) <- c("average.temperature", "min.power.consumption")
+> min.power.consumption.matrix
+        average.temperature min.power.consumption
+[0,2)                     1               68.8081
+[2,4)                     3               58.1601
+[4,6)                     5               54.9205
+[6,8)                     7               55.9044
+[8,10)                    9               60.4221
+[10,12)                  11               57.2195
+[12,14)                  13               50.2237
+[14,16)                  15               50.9279
+[16,18)                  17               49.8641
+[18,20)                  19               48.7796
+[20,22)                  21               46.3978
+[22,24)                  23               46.3474
+[24,26)                  25               47.6825
+[26,28)                  27               49.6092
+[28,30)                  29               45.9109
+[30,32)                  31               45.6151
+[32,34)                  33               45.3238
+[34,36)                  35               44.4238
+[36,38)                  37               46.4085
+[38,40)                  39               39.5643
+[40,42)                  41               40.0671
+[42,44)                  43               44.2881
+[44,46)                  45               41.2311
+[46,48)                  47               40.1007
+[48,50)                  49               40.8964
+[50,52)                  51               40.9541
+[52,54)                  53               35.2605
+[54,56)                  55               39.0662
+[56,58)                  57               39.3408
+[58,60)                  59               39.3739
+[60,62)                  61               38.8142
+[62,64)                  63               41.2297
+[64,66)                  65               41.4718
+[66,68)                  67               40.8431
+[68,70)                  69               42.7762
+[70,72)                  71               39.9362
+[72,74)                  73               48.8566
+[74,76)                  75               41.0651
+[76,78)                  77               42.7008
+[78,80)                  79               54.4724
+[80,82)                  81               56.8079
+[82,84)                  83               55.4768
+[84,86)                  85               56.9069
+[86,88)                  87               51.6770
+[88,90)                  89               49.7290
+[90,92)                  91               49.6333
+[92,94)                  93               84.2437
+> var(min.power.consumption.matrix)
+                      average.temperature min.power.consumption
+average.temperature             752.00000             -24.66792
+min.power.consumption           -24.66792              79.81808
+> setwd("~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment")
+> power.consumption.dataframe <- read.delim("2006Data.csv", sep=",")
+> max.power.consumption.matrix <- matrix(average.temperatures.vector)
+> max.power.consumption.matrix <- cbind(max.power.consumption.matrix, 
++ tapply(power.consumption.dataframe$Power, cut(power.consumption.dataframe$Temperature, temperature_breaks , right=FALSE), max))
+> colnames(max.power.consumption.matrix) <- c("average.temperature", "max.power.consumption")
+> max.power.consumption.matrix
+        average.temperature max.power.consumption
+[0,2)                     1               68.8081
+[2,4)                     3               87.6270
+[4,6)                     5               76.7704
+[6,8)                     7               89.7771
+[8,10)                    9               90.2336
+[10,12)                  11               91.6283
+[12,14)                  13               89.7539
+[14,16)                  15               90.9417
+[16,18)                  17               92.8717
+[18,20)                  19               92.9389
+[20,22)                  21               91.5642
+[22,24)                  23               92.9723
+[24,26)                  25               95.8191
+[26,28)                  27               98.8383
+[28,30)                  29               96.7866
+[30,32)                  31               95.0473
+[32,34)                  33               96.6031
+[34,36)                  35              100.8437
+[36,38)                  37              100.9896
+[38,40)                  39               90.8336
+[40,42)                  41              100.3930
+[42,44)                  43               95.7247
+[44,46)                  45               98.9550
+[46,48)                  47               96.8664
+[48,50)                  49               93.0825
+[50,52)                  51               91.7737
+[52,54)                  53               91.9065
+[54,56)                  55               86.5059
+[56,58)                  57               87.1483
+[58,60)                  59               87.9378
+[60,62)                  61               91.3635
+[62,64)                  63               87.1151
+[64,66)                  65               85.5433
+[66,68)                  67               90.0549
+[68,70)                  69               88.1541
+[70,72)                  71               87.3791
+[72,74)                  73               85.8301
+[74,76)                  75               88.4328
+[76,78)                  77               87.2949
+[78,80)                  79               89.0667
+[80,82)                  81               91.5709
+[82,84)                  83               89.9356
+[84,86)                  85               88.1065
+[86,88)                  87               89.5421
+[88,90)                  89               92.9252
+[90,92)                  91               90.2133
+[92,94)                  93               88.1772
+> var(c(1,1,1))
+[1] 0
+> var(c(1,1,2))
+[1] 0.3333333
+> V <- c(7,2,1,0,3,-1,-3,4)
+> V
+[1]  7  2  1  0  3 -1 -3  4
+> A <- matrix(V, nrow=4)
+> A
+     [,1] [,2]
+[1,]    7    3
+[2,]    2   -1
+[3,]    1   -3
+[4,]    0    4
+> AT <- t(A)
+> AT
+     [,1] [,2] [,3] [,4]
+[1,]    7    2    1    0
+[2,]    3   -1   -3    4
+> A %*% AT
+     [,1] [,2] [,3] [,4]
+[1,]   58   11   -2   12
+[2,]   11    5    5   -4
+[3,]   -2    5   10  -12
+[4,]   12   -4  -12   16
+> AT %*% A
+     [,1] [,2]
+[1,]   54   16
+[2,]   16   35
+> solve(A %*% AT)
+Error in solve.default(A %*% AT) : 
+  Lapack routine dgesv: system is exactly singular: U[4,4] = 0
+> det(A %*% AT)
+[1] 0
+> solve(AT %*% A)
+             [,1]         [,2]
+[1,]  0.021419829 -0.009791922
+[2,] -0.009791922  0.033047736
+> det(AT %*% A)
+[1] 1634
+> V
+[1]  7  2  1  0  3 -1 -3  4
+> V <- c(V, c(-2))
+> V
+[1]  7  2  1  0  3 -1 -3  4 -2
+> B <- matrix(V, nrow=3)
+> B
+     [,1] [,2] [,3]
+[1,]    7    0   -3
+[2,]    2    3    4
+[3,]    1   -1   -2
+> Binv <- solve(B)
+> Binv
+     [,1] [,2] [,3]
+[1,]   -2    3    9
+[2,]    8  -11  -34
+[3,]   -5    7   21
+> round(B %*% Binv)
+     [,1] [,2] [,3]
+[1,]    1    0    0
+[2,]    0    1    0
+[3,]    0    0    1
+> round(Binv %*% B)
+     [,1] [,2] [,3]
+[1,]    1    0    0
+[2,]    0    1    0
+[3,]    0    0    1
+> eigen(B)
+$values
+[1] 6.854102 1.000000 0.145898
+
+$vectors
+           [,1]       [,2]       [,3]
+[1,] 0.86822600  0.1825742  0.2159107
+[2,] 0.49436902 -0.9128709 -0.8426423
+[3,] 0.04222416  0.3651484  0.4932914
+
+> C <- eigen(B)$vectors
+> class(C)
+[1] "matrix"
+> C %*% B
+         [,1]       [,2]       [,3]
+[1,] 6.658641  0.3318118 -2.3062028
+[2,] 0.792199 -1.8959704 -3.4493061
+[3,] 1.519157  0.6021537  0.3473382
+> B %*% C
+          [,1]       [,2]        [,3]
+[1,] 5.9509095  0.1825742  0.03150095
+[2,] 3.3884557 -0.9128709 -0.12293986
+[3,] 0.2894087  0.3651484  0.07197025
+> det(C %*% B)
+[1] -0.1275499
+> det(B %*% C)
+[1] -0.1275499
+> dimnames(B) <- list(c("R1", "R2", "R3"), c("C1", "C2", "C3"))
+> B
+   C1 C2 C3
+R1  7  0 -3
+R2  2  3  4
+R3  1 -1 -2
+> B.data.frame <- data.frame(B)
+> B.data.frame
+   C1 C2 C3
+R1  7  0 -3
+R2  2  3  4
+R3  1 -1 -2
+> class(B.data.frame)
+[1] "data.frame"
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> class(B.data.frame)
+[1] "data.frame"
+> 
+> 
+> 
+> 
+> source('~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment/solution/assignment-1_solution-1.R')
+Error in solve.default(A %*% AT) : 
+  Lapack routine dgesv: system is exactly singular: U[4,4] = 0
+> V;
+[1]  7  2  1  0  3 -1 -3  4
+> setwd("~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment");
+> power.consumption.dataframe <- read.delim("2006Data.csv", sep=",");
+> plot(power.consumption.dataframe$Temperature, power.consumption.dataframe$Power, xlab="Temperature", ylab="Power Consumption");
+> plot(power.consumption.dataframe$Hour, power.consumption.dataframe$Power, xlab="Hour of the day", ylab="Power Consumption");
+> boxplot(Power ~ Hour, data=power.consumption.dataframe, ylab="Power Consumption", xlab="Hour of the day");
+> 
+> 
+> 
+> 
+> save.image("~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment/workspace-feb-5.RData")
+> save.image("~/work/big-data-analytics-harvard/week1-Jan-29-2016/assignment/workspace-feb-5-2nd.RData")
+> View(A)

@@ -1,0 +1,64 @@
+
+
+2+2
+--------------------------
+nums = sc.parallelize([1, 2, 3, 4])
+squared = nums.map(lambda x: x * x).collect()
+for num in squared: 
+print "%i " % (num)
+--------------------------
+Split Hello World  'hello'
+--------------------------
+
+lines = sc.parallelize(["hello world", "hi"])
+words = lines.flatMap(lambda line: line.split(" "))
+words.first()
+----------------------------------------
+Copy all-bible.txt into hdfs from shared folder
+----------------------------------------
+
+cd /mnt/hgfs
+ ls
+ cd SF
+ ls -l
+hadoop fs -mkdir input
+hadoop fs -ls
+hadoop fs -put /mnt/hgfs/SF/all-bible.txt input
+hadoop fs -ls input
+------------------------------------------------
+Check your hdfs output from your job
+------------------------------------------------
+hadoop fs -ls output2
+hadoop fs -cat output2/part-00000 | head -20
+------------------------------------------------
+Delete your hdfs output file
+------------------------------------------------
+hadoop fs -rm -r output
+------------------------------------------------
+RUN FROM WITHIN PYSPARK   *** find Jacob count
+--------------------------------------------------
+RDDvar = sc.textFile("input/all-bible.txt")
+Jacob_filter = RDDvar.filter(lambda line: "Jacob" in line)
+Jacob_filter.count()
+    
+--------------------------------------------
+RUN FROM WITHIN PYSPARK   *** Word Count ***
+--------------------------------------------
+RDDvar = sc.textFile("input/all-bible.txt")
+words = RDDvar.flatMap(lambda x: x.split(" "))
+result = words.map(lambda x: (x, 1)).reduceByKey(lambda x, y: x + y)
+result.saveAsTextFile("hdfs://localhost:8020/user/cloudera/output2")
+
+------------------------------------------------------------
+
+CREATING A SCRIPT findJacob.py
+#-----------------------------
+# findJacob.py    2/19/2016 d. howard
+from pyspark import SparkConf, SparkContext
+conf = SparkConf().setMaster("local").setAppName("MyApp")
+sc = SparkContext(conf = conf)
+RDDvar = sc.textFile("hdfs://localhost:8020/user/cloudera/input/all-bible.txt")
+lifeLines = RDDvar.filter(lambda line: "Jacob" in line)
+print lifeLines.first()
+
+--------------------------------------------------

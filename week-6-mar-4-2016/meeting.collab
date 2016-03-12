@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- JNLP File for Gemini Client application -->
+<jnlp
+  spec="1.5+"
+  codebase="https://na-downloads.elluminate.com/web/download/us/12.5">
+  <information>
+    <title>Blackboard Collaborate</title>
+    <vendor>Blackboard Collaborate</vendor>
+    <description>Blackboard Collaborate Virtual Classroom</description>
+    <icon href="gemini.png"/>
+  </information>
+  <security>
+    <all-permissions/>
+  </security>
+  <update check="always" policy="always"/>
+  
+  
+  <resources os="Mac\ OS\ X">
+    <j2se version="1.6" java-vm-args="-Xincgc " initial-heap-size="512m" max-heap-size="512m"/>
+    <j2se version="1.7+" initial-heap-size="512m" max-heap-size="512m"/>
+  </resources>
+  <resources os="Mac\ OS\ X" arch="ppc">
+    <nativelib href="audio-client-ecelp-macosx-ppc.jar" />
+    <nativelib href="appshare-client-macosx-ppc.jar" />
+    <nativelib href="classroom-browser-macosx-ppc.jar" />
+    <nativelib href="audio-client-macosx-ppc.jar" />
+    <nativelib href="classroom-gui-macosx-ppc.jar" />
+    <nativelib href="classroom-util-platform-macosx-ppc.jar" />
+    <nativelib href="video-client-macosx-ppc.jar" />
+  </resources>
+  <resources os="Mac\ OS\ X" arch="i386">
+    <nativelib href="video-client-macosx-x86.jar" />
+    <nativelib href="classroom-util-platform-macosx-x86.jar" />
+    <nativelib href="audio-client-ecelp-macosx-x86.jar" />
+    <nativelib href="classroom-gui-macosx-x86.jar" />
+    <nativelib href="appshare-client-macosx-x86.jar" />
+    <nativelib href="classroom-browser-macosx-x86.jar" />
+    <nativelib href="audio-client-macosx-x86.jar" />
+    <nativelib href="audio-client-webrtc-macosx-x86.jar" />
+    <jar href="engine-webkit-3.3.jar"/>
+  </resources>
+  <resources os="Mac\ OS\ X" arch="x86_64">
+    <nativelib href="appshare-client-macosx-x86_64.jar" />
+    <nativelib href="classroom-gui-macosx-x86_64.jar" />
+    <nativelib href="audio-client-macosx-x86_64.jar" />
+    <nativelib href="video-client-macosx-x86_64.jar" />
+    <nativelib href="classroom-util-platform-macosx-x86_64.jar" />
+    <nativelib href="classroom-browser-macosx-x86_64.jar" />
+    <nativelib href="audio-client-webrtc-macosx-x86_64.jar" />
+    <nativelib href="audio-client-ecelp-macosx-x86_64.jar" />
+    <jar href="engine-webkit-3.3.jar"/>
+  </resources>
+  
+  
+  <resources os="Windows">
+    <j2se version="1.6+" java-vm-args="-Xincgc " initial-heap-size="512m" max-heap-size="512m"/>
+  </resources>
+  <resources os="Windows" arch="x86">
+    <nativelib href="audio-client-webrtc-windows-x86.jar" />
+    <nativelib href="audio-client-ecelp-windows-x86.jar" />
+    <nativelib href="appshare-client-windows-x86.jar" />
+    <nativelib href="classroom-gui-windows-x86.jar" />
+    <nativelib href="classroom-util-platform-windows-x86.jar" />
+    <nativelib href="audio-client-windows-x86.jar" />
+    <nativelib href="video-client-windows-x86.jar" />
+  </resources>
+  <resources os="Windows" arch="x86_64 amd64">
+    <nativelib href="classroom-gui-windows-x86_64.jar" />
+    <nativelib href="audio-client-windows-x86_64.jar" />
+    <nativelib href="video-client-windows-x86_64.jar" />
+    <nativelib href="classroom-util-platform-windows-x86_64.jar" />
+    <nativelib href="audio-client-ecelp-windows-x86_64.jar" />
+    <nativelib href="audio-client-webrtc-windows-x86_64.jar" />
+    <nativelib href="appshare-client-windows-x86_64.jar" />
+  </resources>
+  
+  
+  <resources os="SunOS" arch="sparc">
+    <j2se version="1.6+" java-vm-args="-Xincgc " initial-heap-size="512m" max-heap-size="512m"/>
+    <nativelib href="audio-client-ecelp-solaris-sparc.jar" />
+    <nativelib href="appshare-client-solaris-sparc.jar" />
+    <nativelib href="classroom-gui-solaris-sparc.jar" />
+  </resources>
+  
+  
+  <resources os="Linux">
+    <j2se version="1.6+" java-vm-args="-Xincgc " initial-heap-size="512m" max-heap-size="512m"/>
+  </resources>
+  <resources os="Linux" arch="i386 x86">
+    <nativelib href="appshare-client-linux-x86.jar" />
+    <nativelib href="classroom-gui-linux-x86.jar" />
+    <nativelib href="audio-client-ecelp-linux-x86.jar" />
+    <nativelib href="video-client-linux-x86.jar" />
+  </resources>
+  <resources os="Linux" arch="x86_64 amd64">
+    <nativelib href="video-client-linux-x86_64.jar" />
+    <nativelib href="appshare-client-linux-x86_64.jar" />
+    <nativelib href="classroom-gui-linux-x86_64.jar" />
+    <nativelib href="audio-client-ecelp-linux-x86_64.jar" />
+  </resources>
+  <resources locale="ar">
+    <jar href="lang-ar.jar"/>
+  </resources>
+  <resources locale="bg">
+    <jar href="lang-bg.jar"/>
+  </resources>
+  <resources locale="cs">
+    <jar href="lang-cs.jar"/>
+  </resources>
+  <resources locale="cy">
+    <jar href="lang-cy.jar"/>
+  </resources>
+  <resources locale="da">
+    <jar href="lang-da.jar"/>
+  </resources>
+  <resources locale="de">
+    <jar href="lang-de.jar"/>
+  </resources>
+  <resources locale="en_GB">
+    <jar href="lang-en_GB.jar"/>
+  </resources>
+  <resources locale="es">
+    <jar href="lang-es.jar"/>
+  </resources>
+  <resources locale="fr">
+    <jar href="lang-fr.jar"/>
+  </resources>
+  <resources locale="it">
+    <jar href="lang-it.jar"/>
+  </resources>
+  <resources locale="iw">
+    <jar href="lang-iw.jar"/>
+  </resources>
+  <resources locale="ja">
+    <jar href="lang-ja.jar"/>
+  </resources>
+  <resources locale="ko">
+    <jar href="lang-ko.jar"/>
+  </resources>
+  <resources locale="nl">
+    <jar href="lang-nl.jar"/>
+  </resources>
+  <resources locale="pl">
+    <jar href="lang-pl.jar"/>
+  </resources>
+  <resources locale="pt_BR">
+    <jar href="lang-pt_BR.jar"/>
+  </resources>
+  <resources locale="ru">
+    <jar href="lang-ru.jar"/>
+  </resources>
+  <resources locale="sv">
+    <jar href="lang-sv.jar"/>
+  </resources>
+  <resources locale="th">
+    <jar href="lang-th.jar"/>
+  </resources>
+  <resources locale="tr">
+    <jar href="lang-tr.jar"/>
+  </resources>
+  <resources locale="vi">
+    <jar href="lang-vi.jar"/>
+  </resources>
+  <resources locale="zh_CN">
+    <jar href="lang-zh_CN.jar"/>
+  </resources>
+  <resources locale="zh_TW">
+    <jar href="lang-zh_TW.jar"/>
+  </resources>
+
+
+  <resources>
+    <j2se version="1.6+" initial-heap-size="512m" max-heap-size="512m"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="apple.laf.useScreenMenuBar" value="true"/>
+    <property name="apple.awt.window.position.forceSafeProgrammaticPositioning" value="false"/>
+    <property name="jnlp.packEnabled" value="true"/>
+    <jar href="classroom-applaunch.jar" main="true"/>
+    <jar href="guice-2.0-no_aop.jar"/>
+    <jar href="classroom-app.jar"/>
+    <jar href="view-client.jar"/>
+    <jar href="video-client.jar"/>
+    <jar href="online-client.jar"/>
+    <jar href="recorder-client.jar"/>
+    <jar href="chair-client.jar"/>
+    <jar href="chat-client.jar"/>
+    <jar href="polling-client.jar"/>
+    <jar href="starttime-client.jar"/>
+    <jar href="profile-client.jar"/>
+    <jar href="player-client.jar"/>
+    <jar href="hand-client.jar"/>
+    <jar href="notes-client.jar"/>
+    <jar href="participant-client.jar"/>
+    <jar href="calculator-client.jar"/>
+    <jar href="transfer-client.jar"/>
+    <jar href="timer-client.jar"/>
+    <jar href="whiteboard-client.jar"/>
+    <jar href="breakout-client.jar"/>
+    <jar href="activity-client.jar"/>
+    <jar href="telephony-client.jar"/>
+    <jar href="audio-client.jar"/>
+    <jar href="appshare-client.jar"/>
+    <jar href="caption-client.jar"/>
+    <jar href="web-client.jar"/>
+    <jar href="multimedia-client.jar"/>
+    <jar href="agenda-client.jar"/>
+    <jar href="invite-client.jar"/>
+    <jar href="quiz-client.jar"/>
+    <jar href="classroom-capture.jar"/>
+    <jar href="classroom-core.jar"/>
+    <jar href="classroom-feature.jar"/>
+    <jar href="classroom-imps.jar"/>
+    <jar href="classroom-location.jar"/>
+    <jar href="classroom-mlf.jar"/>
+    <jar href="classroom-mrf.jar"/>
+    <jar href="classroom-session.jar"/>
+    <jar href="classroom-swing.jar"/>
+    <jar href="extra.jar"/>
+    <jar href="wsfix.jar"/>
+    <jar href="view-core.jar"/>
+    <jar href="jinx-client.jar"/>
+    <jar href="video-core.jar"/>
+    <jar href="classroom-gui.jar"/>
+    <jar href="command-engine.jar"/>
+    <jar href="classroom-util.jar"/>
+    <jar href="recorder-core.jar"/>
+    <jar href="chair-core.jar"/>
+    <jar href="chat-core.jar"/>
+    <jar href="polling-core.jar"/>
+    <jar href="starttime-core.jar"/>
+    <jar href="profile-core.jar"/>
+    <jar href="hand-core.jar"/>
+    <jar href="notes-core.jar"/>
+    <jar href="participant-core.jar"/>
+    <jar href="calculator-core.jar"/>
+    <jar href="transfer-core.jar"/>
+    <jar href="timer-core.jar"/>
+    <jar href="whiteboard-core.jar"/>
+    <jar href="whiteboard-palette.jar"/>
+    <jar href="itext-0.40.jar"/>
+    <jar href="breakout-core.jar"/>
+    <jar href="activity-core.jar"/>
+    <jar href="telephony-core.jar"/>
+    <jar href="audio-core.jar"/>
+    <jar href="appshare-core.jar"/>
+    <jar href="caption-core.jar"/>
+    <jar href="classroom-browser.jar"/>
+    <jar href="web-core.jar"/>
+    <jar href="multimedia-core.jar"/>
+    <jar href="agenda-core.jar"/>
+    <jar href="invite-core.jar"/>
+    <jar href="quiz-core.jar"/>
+    <jar href="jinx-core.jar"/>
+    <jar href="orange-extensions-1.3.0.jar"/>
+    <jar href="classroom-version.jar"/>
+    <jar href="slf4j-api-1.7.5.jar"/>
+    <jar href="logback-classic-1.0.13.jar"/>
+    <jar href="logback-core-1.0.13.jar"/>
+    <jar href="jdom-1.0.jar"/>
+    <jar href="jxbrowser-3.4.9.jar"/>
+    <jar href="jniwrap-3.8.4.jar"/>
+    <jar href="engine-webkit-3.4.jar"/>
+    <jar href="slf4j-log4j12-1.7.5.jar"/>
+    <jar href="log4j-1.2.15.jar"/>
+    <jar href="clustering.jar"/>
+    <jar href="hazelcast-2.3.1.jar"/>
+    <jar href="all-branding.jar"/>
+  </resources>
+
+  <application-desc main-class="com.elluminate.classroom.client.app.Main">
+    <argument>-url</argument>
+    <argument>ssljinx://ssva10.bbcollab.com:2187/hu|2016 SPRING CSCI E-53#M.A375867F9CE13B0D7350DCBE6987E1</argument>
+    <argument>-Xgbn:full</argument>
+    <argument>-user</argument>
+    <argument>Rohan Pulekar#05F7EB922E793D2F4FA72B94F99EA160</argument>
+    <argument>05F7EB922E793D2F4FA72B94F99EA160</argument>
+    <argument>placeholder</argument>
+    <argument>placeholder</argument>
+    <argument>placeholder</argument>
+    <argument>placeholder</argument>
+    <argument>placeholder</argument>
+    <argument>placeholder</argument>
+    <argument>placeholder</argument>
+    <argument>placeholder</argument>
+    <argument>placeholder</argument>
+    <argument>placeholder</argument>
+    <argument>placeholder</argument>
+    <argument>placeholder</argument>
+    <argument>placeholder</argument>
+    <argument>placeholder</argument>
+
+  </application-desc>
+</jnlp>

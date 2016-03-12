@@ -1,0 +1,40 @@
+select word from MERGED where freq_in_shake IS NOT NULL AND freq_in_bible IS NULL LIMIT 10;
+2d
+2s
+4d
+5s
+6d
+8d
+AARON
+ABERGAVENNY
+ABHORSON
+ABOUT
+
+
+
+
+select word from MERGED where freq_in_bible IS NOT NULL AND freq_in_shake IS NULL LIMIT 10;
+0
+000
+001
+002
+003
+004
+005
+006
+007
+008
+
+
+
+select word from MERGED where freq_in_bible IS NOT NULL AND freq_in_shake IS NOT NULL LIMIT 10;
+1
+10
+2
+3
+4
+5
+6
+7
+8
+9

@@ -1,0 +1,12 @@
+A <- matrix(c(3,2,4,2,0,2,4,2,3), nrow=3);
+A;
+eigen(A);
+eigen(A)$vectors;
+eigen(A)$vectors[,1];
+eigen(A)$vectors[,2];
+eigen(A)$vectors[,3];
+round(sum(eigen(A)$vectors[,1] * eigen(A)$vectors[,2]));
+round(sum(eigen(A)$vectors[,2] * eigen(A)$vectors[,3]));
+round(sum(eigen(A)$vectors[,1] * eigen(A)$vectors[,3]));
+round(eigen(A)$vectors %*% t(eigen(A)$vectors));
+round(t(eigen(A)$vectors) %*% A %*% eigen(A)$vectors);
