@@ -1,0 +1,18 @@
+Listening for kafka messages from localhost:9092  on topic:assignment8_problem2and3_topic
+Time: 05:21:12   Kafka Consumer: Received message in the offset:985 The message is: 6
+Time: 05:21:13   Kafka Consumer: Received message in the offset:986 The message is: 4
+Time: 05:21:14   Kafka Consumer: Received message in the offset:987 The message is: 5
+Time: 05:21:15   Kafka Consumer: Received message in the offset:988 The message is: 9
+Time: 05:21:16   Kafka Consumer: Received message in the offset:989 The message is: 7
+Time: 05:21:18   Kafka Consumer: Received message in the offset:990 The message is: 4
+Time: 05:21:19   Kafka Consumer: Received message in the offset:991 The message is: 6
+Time: 05:21:20   Kafka Consumer: Received message in the offset:992 The message is: 0
+Time: 05:21:21   Kafka Consumer: Received message in the offset:993 The message is: 5
+Time: 05:21:22   Kafka Consumer: Received message in the offset:994 The message is: 3
+Time: 05:21:23   Kafka Consumer: Received message in the offset:995 The message is: 7
+Time: 05:21:24   Kafka Consumer: Received message in the offset:996 The message is: 5
+Time: 05:21:25   Kafka Consumer: Received message in the offset:997 The message is: 0
+Time: 05:21:26   Kafka Consumer: Received message in the offset:998 The message is: 1
+Time: 05:21:27   Kafka Consumer: Received message in the offset:999 The message is: 9
+Time: 05:21:28   Kafka Consumer: Received message in the offset:1000 The message is: 8
+Time: 05:21:29   Kafka Consumer: Received message in the offset:1001 The message is: 4

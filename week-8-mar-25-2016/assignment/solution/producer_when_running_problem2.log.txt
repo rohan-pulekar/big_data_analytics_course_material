@@ -1,0 +1,18 @@
+Will start sending kafka messages to localhost:9092  on topic:assignment8_problem2and3_topic
+Time: 05:21:12   Kafka Producer: Sent message :6
+Time: 05:21:13   Kafka Producer: Sent message :4
+Time: 05:21:14   Kafka Producer: Sent message :5
+Time: 05:21:15   Kafka Producer: Sent message :9
+Time: 05:21:16   Kafka Producer: Sent message :7
+Time: 05:21:17   Kafka Producer: Sent message :4
+Time: 05:21:18   Kafka Producer: Sent message :6
+Time: 05:21:19   Kafka Producer: Sent message :0
+Time: 05:21:20   Kafka Producer: Sent message :5
+Time: 05:21:21   Kafka Producer: Sent message :3
+Time: 05:21:22   Kafka Producer: Sent message :7
+Time: 05:21:23   Kafka Producer: Sent message :5
+Time: 05:21:24   Kafka Producer: Sent message :0
+Time: 05:21:25   Kafka Producer: Sent message :1
+Time: 05:21:26   Kafka Producer: Sent message :9
+Time: 05:21:27   Kafka Producer: Sent message :8
+Time: 05:21:28   Kafka Producer: Sent message :4
