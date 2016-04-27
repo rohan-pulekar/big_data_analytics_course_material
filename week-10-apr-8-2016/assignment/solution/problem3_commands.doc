@@ -1,0 +1,25 @@
+cypher browser commands:
+
+To get actors who have acted in movies played by Keanu Reeves:
+
+MATCH (:Actor {name:"Keanu Reeves"})-[:ACTS_IN]->(movie:Movie)<-[:ACTS_IN]-(actor:Actor) return distinct actor.name,movie.title;
+
+
+To get list of directors who directed movies played by Keanu Reeves:
+
+MATCH (:Actor {name:"Keanu Reeves"})-[:ACTS_IN]->(movie:Movie)<-[:DIRECTED]-(director:Director) return distinct director.name,movie.title;
+
+
+
+
+
+curl commands:
+
+To get actors who have acted in movies played by Keanu Reeves:
+
+curl -i -H accept:application/json -H content-type:application/json -XPOST --user neo4j:Elcapitan1011 http://localhost:7474/db/data/transaction/commit -d '{"statements":[{"statement":"MATCH (:Actor {name:{actor_name}})-[:ACTS_IN]->(movie:Movie)<-[:ACTS_IN]-(actor:Actor) return distinct actor.name,movie.title;", "parameters": {"actor_name": "Keanu Reeves"}}]}'
+
+
+To get list of directors who directed movies played by Keanu Reeves:
+
+curl -i -H accept:application/json -H content-type:application/json -XPOST --user neo4j:Elcapitan1011 http://localhost:7474/db/data/transaction/commit -d '{"statements":[{"statement":"MATCH (:Actor {name:{actor_name}})-[:ACTS_IN]->(movie:Movie)<-[:DIRECTED]-(director:Director) return distinct director.name,movie.title;", "parameters": {"actor_name": "Keanu Reeves"}}]}'

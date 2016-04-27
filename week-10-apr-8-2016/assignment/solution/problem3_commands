@@ -1,4 +1,0 @@
-MATCH (:Actor {name:"Keanu Reeves"})-[:ACTS_IN]->(:Movie)<-[:ACTS_IN]-(actor:Actor) return distinct actor.name;
-
-
-curl -i -H accept:application/json -H content-type:application/json -XPOST --user neo4j:Elcapitan1011 http://localhost:7474/db/data/transaction/commit -d '{"statements":[{"statement":"MATCH (:Actor {name:{actor_name}})-[:ACTS_IN]->(:Movie)<-[:ACTS_IN]-(actor:Actor) return distinct actor.name;", "parameters": {"actor_name": "Keanu Reeves"}}]}'
